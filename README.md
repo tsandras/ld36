@@ -18,3 +18,9 @@
   * Select
   * Hover
   * Click
+* Templates
+  * ~~Pyramid~~
+  * Clepsydra
+  * High wheeler
+* Resources
+  * TBD
