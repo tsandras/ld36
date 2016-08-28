@@ -6,15 +6,21 @@
 
 * ~~Display image~~
 * ~~Move image~~
-* Slots
+* ~~Slots~~
 * Grid based design
-  * Visual feedback
+  * ~~Visual feedback~~
   * Drag&Drop
 
 ### Assets
 
-* Bg
+* ~~Bg~~
 * Pointers
   * Select
   * Hover
   * Click
+* Templates
+  * ~~Pyramid~~
+  * Clepsydra
+  * High wheeler
+* Resources
+  * TBD
