@@ -3,7 +3,7 @@ Ludum dare 36 :-)
 TODO
 
 	* Proto test
-		* Display image
+		* ~~Display image~~
 		* Move image
 		* Slots
 		* Grid based design
