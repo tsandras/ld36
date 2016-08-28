@@ -16,15 +16,62 @@
 </body>
 
 <script type="text/javascript" src="vendor/phaser.min.js"></script>
+<script type="text/javascript" src="src/component.js"></script>
+<script type="text/javascript" src="src/template.js"></script>
 <script type="text/javascript">
-  var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { create: create });
+  var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
+  var componentTest = new Component(1, 'test');
+
+  function preload() {
+
+    game.load.image('box', 'box.png');
+    game.load.image('tubing', 'tubing.jpg');
+  }
+
+  var box;
+  var tubing;
 
   function create() {
 
-      var text = "-- LD36 --";
-      var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+    game.stage.backgroundColor = '#FFFFFF';
 
-      var t = game.add.text(game.world.centerX-300, 0, text, style);
+    box = game.add.sprite(250, 250, 'box');
+    tubing = game.add.sprite(450, 450, 'tubing');
 
+    //  Input Enable the sprites
+    box.inputEnabled = true;
+
+    //  Allow dragging - the 'true' parameter will make the sprite snap to the center
+    box.input.enableDrag(true);
+
+    template = new Template(game, 'Test', null);
+    console.log(template);
+    template.graphicGrid.visible = true;
+
+    box.events.onDragStop.add(onDragStop, {template: template});
+    box.events.onDragUpdate.add(dragUpdate, {template: template});
   }
+
+  function dragUpdate(sprite, pointer, dragX, dragY, snapPoint) {
+    console.log(sprite.position);
+    console.log(snapPoint);
+    console.log(pointer);
+    if (sprite.position.x <= 50) {
+      // sprite.input.draggable = false;
+      sprite.position.x = 50;
+    }
+    if (sprite.position.y <= 50) {
+      sprite.position.y = 50;
+    }
+    if (sprite.position.x >= 490) {
+      sprite.position.x = 490;
+    }
+    console.log(template);
+    template.respectComponents(sprite);
+  }
+
+  function onDragStop(sprite, pointeur) {
+    console.log('Stop');
+  }
+
 </script>
