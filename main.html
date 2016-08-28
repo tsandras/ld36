@@ -1,0 +1,30 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" />
+    <title>ld36</title>
+  <script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+  <div id="ld36">
+  </div>
+</body>
+
+<script type="text/javascript" src="vendor/phaser.min.js"></script>
+<script type="text/javascript">
+  var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { create: create });
+
+  function create() {
+
+      var text = "-- LD36 --";
+      var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+
+      var t = game.add.text(game.world.centerX-300, 0, text, style);
+
+  }
+</script>
