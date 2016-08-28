@@ -13,7 +13,7 @@
 
 ### Assets
 
-* Bg
+* ~~Bg~~
 * Pointers
   * Select
   * Hover
