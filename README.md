@@ -4,8 +4,8 @@
 
 ### Proto test
 
-* ~~Display image~~ [DONE]
-* Move image [DONE]
+* ~~Display image~~
+* ~~Move image~~
 * Slots
 * Grid based design
   * Visual feedback
