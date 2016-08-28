@@ -9,3 +9,7 @@ TODO
 		* Move image
 		* Slots
 		* Grid based design
+			* Visual feedback
+			* Drag&Drop
+	* Assets
+		* Bg
