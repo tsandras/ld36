@@ -1,7 +1,5 @@
 Ludum dare 36 :-)
 
-=================
-
 TODO
 
 	* Proto test
@@ -13,3 +11,7 @@ TODO
 			* Drag&Drop
 	* Assets
 		* Bg
+		* Pointers
+			* Select
+			* Hover
+			* Click
