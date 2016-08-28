@@ -6,9 +6,9 @@
 
 * ~~Display image~~
 * ~~Move image~~
-* Slots
+* ~~Slots~~
 * Grid based design
-  * Visual feedback
+  * ~~Visual feedback~~
   * Drag&Drop
 
 ### Assets
