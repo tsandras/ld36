@@ -36,6 +36,8 @@
 ### Assets
 
 * ~~Bg~~
+* ~~Title Screen~~
+* ~~Favicon~~
 * Pointers
   * Select
   * Hover
@@ -54,13 +56,24 @@
     * Win
     * Fail
 * Resources
-  * Square+Raw
+  * ~~Square+Raw~~
     * ~~1x1~~
     * ~~1x2~~
     * ~~2x1~~
-    * 2x2
+    * ~~2x2~~
   * Round+Raw
     * 1x1
     * 1x2
     * 2x1
     * 2x2
+
+### Polish & corrections
+
+#### Bugs
+
+* the snail function is drunk
+
+#### Design
+
+* too much 2*2 bricks
+* change highlight to another color when over a wrong grid slot
