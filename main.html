@@ -57,8 +57,11 @@
 	    game.add.image(0, 0, 'ld36_bg_001');
         var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
         slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
-        var texts = ["Start", "Level 1 \nPyramid"];
-        chainedTextsWithFinalTrigger(590,20, texts, firstLevel);
+        var texts = [
+		  "My loyal servant,\n\n I want you to collect samples from the crafts of an old exctinct species named 'humans'.\n\nYou will have to summon and use blocks of ancient materials to rebuild those samples. \n\n Do not disappoint me...\n\n(click to continue)",  
+		  "Level 1 \nPyramid"
+		];
+        chainedTextsWithFinalTrigger(0,0, texts, firstLevel);
 	  }
   }
 
@@ -70,16 +73,18 @@
 
   function chainedTextsWithFinalTrigger(x, y, texts, triggerMethod) {
     var current = 0;
-    lastText = game.add.text(x, y, texts[current], { font: "30px Georgia", fill: "#000000", align: "center", boundsAlignH: "center", boundsAlignV: "middle"});
-    lastText.setTextBounds(0, 0, 200, 115);
+    lastText = game.add.text(x, y, texts[current], { font: "24px Georgia", fill: "#2f2320", align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 460});
+    lastText.setTextBounds(53, 63, 460, 480);
+	lastText.blendMode = PIXI.blendModes.COLOR_BURN;
     current = current + 1;
     game.input.onDown.addOnce(showNext, {x: x, y: y, lastText: lastText, texts: texts, current: current, method: triggerMethod}, this);
   }
 
   function showNext() {
     this.lastText.destroy()
-    this.lastText = game.add.text(this.x, this.y, this.texts[this.current], { font: "30px Georgia", fill: "#000000", align: "center", boundsAlignH: "center", boundsAlignV: "middle" });
-    this.lastText.setTextBounds(0, 0, 200, 115);
+    this.lastText = game.add.text(this.x, this.y, this.texts[this.current], { font: "30px Georgia", fill: "#2f2320", align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 200});
+    this.lastText.setTextBounds(590, 20, 200, 115);
+	this.lastText.blendMode = PIXI.blendModes.COLOR_BURN;
     this.current = this.current + 1;
     if (this.current <= this.texts.length) {
       game.input.onDown.addOnce(showNext, {x: this.x, y: this.y, lastText: this.lastText, texts: this.texts, current: this.current, method: this.method}, this);
