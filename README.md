@@ -67,13 +67,13 @@
     * 2x1
     * 2x2
 
-## Polish & corrections
+### Polish & corrections
 
-### Bugs
+#### Bugs
 
 * the snail function is drunk
 
-### Design
+#### Design
 
 * too much 2*2 bricks
 * change highlight to another color when over a wrong grid slot
