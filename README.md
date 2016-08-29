@@ -30,6 +30,7 @@
     * Square
     * Round
 * Balancing
+  * Resources' rotation
   * Spawn conditions
 
 ### Assets
@@ -53,4 +54,11 @@
     * Win
     * Fail
 * Resources
-  * TBD
+  * Square+Raw
+    * 1x1
+    * 1x2
+    * 2x2
+  * Round+Raw
+    * 1x1
+    * 1x2
+    * 2x2
