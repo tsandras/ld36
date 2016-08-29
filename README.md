@@ -56,9 +56,11 @@
 * Resources
   * Square+Raw
     * 1x1
-    * 1x2
+    * ~~1x2~~
+    * ~~2x1~~
     * 2x2
   * Round+Raw
     * 1x1
     * 1x2
+    * 2x1
     * 2x2
