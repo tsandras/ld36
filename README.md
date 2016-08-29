@@ -7,9 +7,9 @@
 * ~~Display image~~
 * ~~Move image~~
 * ~~Slots~~
-* Grid based design
+* ~~Grid based design~~
   * ~~Visual feedback~~
-  * Drag&Drop
+  * ~~Drag&Drop~~
 
 ### Assets
 
@@ -19,8 +19,17 @@
   * Hover
   * Click
 * Templates
-  * ~~Pyramid~~
+  * Pyramid
+    * ~~Blueprint~~
+    * ~~Win~~
+    * Fail
   * Clepsydra
+    * Blueprint
+    * Win
+    * Fail
   * High wheeler
+    * Blueprint
+    * Win
+    * Fail
 * Resources
   * TBD
