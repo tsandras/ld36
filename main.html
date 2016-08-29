@@ -16,15 +16,36 @@
 </body>
 
 <script type="text/javascript" src="vendor/phaser.min.js"></script>
+<script type="text/javascript" src="src/component.js"></script>
+<script type="text/javascript" src="src/square.js"></script>
+<script type="text/javascript" src="src/template.js"></script>
+
 <script type="text/javascript">
-  var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { create: create });
+  var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
+
+  function preload() {
+
+    game.load.image('box', 'box.png');
+    game.load.image('tubing', 'tubing.jpg');
+    game.load.image('ld36_bg_001', 'assets/ld36_bg_001.png');
+  }
 
   function create() {
 
-      var text = "-- LD36 --";
-      var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+    game.stage.backgroundColor = '#FFFFFF';
 
-      var t = game.add.text(game.world.centerX-300, 0, text, style);
+    game.add.image(0, 0, 'ld36_bg_001');
+    c1 = new Component(game, 1, 'tubing', 253, 263, 1, 2);
+    b = new Component(game, 2, 'box', 453, 463, 1, 1);
 
+    template = new Template(game, 'Test', null);
+    template.graphicGrid.visible = true;
+
+    template.setComponent(c1, 10, 10);
+    template.setComponent(c1, 10, 11);
+    template.setComponent(b, 5, 5);
+    template.loadComponentsEvents();
+    // c1.loadEvents(template);
+    // b.loadEvents(template);
   }
 </script>
