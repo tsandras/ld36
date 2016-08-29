@@ -29,7 +29,7 @@ Component = function(game, id, name, x, y, w, h, kind) {
       if (template.isBasicWin()) {
         template.cleanUp();
         template.sprite = game.add.image(53, 63, 'ld36_win_001');
-        chainedTextsWithFinalTrigger(590, 20, ["You win!", "Restart?"], firstLevel);
+        chainedTextsWithFinalTrigger(0, -100, ["You win!", "Restart?"], firstLevel);
       }
     } else {
       self.sprite.position.x = self.xOld;
