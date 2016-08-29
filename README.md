@@ -16,7 +16,7 @@
 * ~~Spawns~~
   * ~~Display~~
   * ~~Random generation~~
-* Template loading
+* ~~Template loading~~
 * Win/lose condition
 
 ### Advanced rules
