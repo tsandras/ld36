@@ -36,6 +36,8 @@
 ### Assets
 
 * ~~Bg~~
+* ~~Title Screen~~
+* ~~Favicon~~
 * Pointers
   * Select
   * Hover
@@ -54,11 +56,11 @@
     * Win
     * Fail
 * Resources
-  * Square+Raw
+  * ~~Square+Raw~~
     * ~~1x1~~
     * ~~1x2~~
     * ~~2x1~~
-    * 2x2
+    * ~~2x2~~
   * Round+Raw
     * 1x1
     * 1x2
