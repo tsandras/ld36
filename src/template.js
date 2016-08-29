@@ -188,18 +188,22 @@ Template = function(game, name, grid, spriteName, text) {
 
   self.spawnsThreeComponents = function() {
     // Add components (assets)
+    // TODO genericity by level
     names = [
       ['square+raw_1x2', 1, 2, 'Raw'],
+      ['square+raw_1x2', 1, 2, 'Raw'],
+      ['square+raw_2x1', 2, 1, 'Raw'],
       ['square+raw_2x1', 2, 1, 'Raw'],
       ['square+raw_1x1', 1, 1, 'Raw'],
-	  ['square+raw_2x2', 2, 2, 'Raw']
+      ['square+raw_1x1', 1, 1, 'Raw'],
+      ['square+raw_2x2', 2, 2, 'Raw']
     ];
     var tmpX = 655;
     var tmpY = 200;
     var rand = 0;
     for (i = 0; i < 3; i++) {
       // Pas oublier de changer la valeur = names.length
-      rand = Math.floor(Math.random() * 4);
+      rand = Math.floor(Math.random() * 7);
       tmpX = 655;
       // case of 1x2
       if (names[rand][1] == 1 && names[rand][2] == 2) {
