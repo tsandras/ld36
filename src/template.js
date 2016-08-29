@@ -1,10 +1,11 @@
-Template = function(game, name, grid) {
+Template = function(game, name, grid, spriteName) {
   var self = this;
   self.id = 1;
   self.game = game;
   self.name = name;
   self.index = 1;
   self.components = {};
+  self.sprite = self.game.add.image(53, 63, spriteName);
 
   var createDefaultGrid = function () {
     out = []
@@ -182,25 +183,40 @@ Template = function(game, name, grid) {
   }
 
   self.spawnsThreeComponents = function() {
-    names = [['square+raw_1x2', 1, 2], ['square+raw_2x1', 2, 1]];
+    // Add components (assets)
+    names = [
+      ['square+raw_1x2', 1, 2, 'Raw'],
+      ['square+raw_2x1', 2, 1, 'Raw'],
+      ['square+raw_1x1', 1, 1, 'Raw']
+    ];
     var tmpX = 655;
     var tmpY = 200;
     var rand = 0;
     for (i = 0; i < 3; i++) {
-      rand = Math.floor(Math.random() * 2);
+      // Pas oublier de changer la valeur = names.length
+      rand = Math.floor(Math.random() * 3);
       tmpX = 655;
-      if (names[rand][1] <= 1) {
+      // case of 1x2
+      if (names[rand][1] == 1 && names[rand][2] == 2) {
         tmpX = tmpX + 20;
       }
-      if (names[rand][1] == 1 && names[rand][2] == 1) {
+      // case of 2x1
+      if (names[rand][1] == 2 && names[rand][2] == 1) {
         tmpY = tmpY + 20;
       }
-      var c = new Component(game, self.index, names[rand][0], tmpX, tmpY, names[rand][1], names[rand][2]);
+      // case of 1x1
+      if (names[rand][1] == 1 && names[rand][2] == 1) {
+        tmpY = tmpY + 20;
+        tmpX = tmpX + 20;
+      }
+      var c = new Component(game, self.index, names[rand][0], tmpX, tmpY, names[rand][1], names[rand][2], names[rand][3]);
       self.index = self.index + 1;
       c.loadEvents();
       self.setComponent(c, 12, 3 + 2*i);
 
       if (names[rand][1] == 1 && names[rand][2] == 1) {
+        tmpY = tmpY + 80;
+      } else if (names[rand][1] == 2 && names[rand][2] == 1) {
         tmpY = tmpY + 80;
       } else {
         tmpY = tmpY + 100;
@@ -238,11 +254,42 @@ Template = function(game, name, grid) {
     }
   }
 
-  // self.loadComponentsEvents = function() {
-  //   for (var i in self.components) {
-  //     if (self.components[i]) {
-  //       self.components[i].loadEvents(self);
-  //     }
-  //   }
-  // }
+  self.isBasicWin = function() {
+    var win = true;
+    var tmpSquare = null;
+    for (i = 0; i < 12; i++) {
+      for (j = 0; j < 12; j++) {
+        tmpSquare = self.grid[i][j];
+        if (tmpSquare.filled) {
+          if (tmpSquare.component && tmpSquare.kinds.includes(tmpSquare.component.kind)) {
+            // lol
+          } else {
+            win = false;
+          }
+        }
+      }
+    }
+    return win;
+  }
+
+  self.cleanUp = function() {
+    for (i = 0; i < 12; i++) {
+      for (j = 0; j < 18; j++) {
+        if (self.grid[i][j].component) {
+          self.grid[i][j].component.destroy();
+          self.grid[i][j].component = null;
+        }
+      }
+    }
+    self.sprite.destroy();
+  }
+
+  self.fillAll = function() {
+    for (i = 0; i < 12; i++) {
+      for (j = 0; j < 12; j++) {
+        test = new Component(self.game, i + j, 'test', i * 40 + 53, j * 40 + 63, 1, 1, 'Raw') 
+        self.setComponent(test, i, j);
+      }
+    }
+  }
 }

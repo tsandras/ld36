@@ -1,9 +1,11 @@
-Component = function(game, id, name, x, y, w, h) {
+Component = function(game, id, name, x, y, w, h, kind) {
   var self = this;
   self.id = id;
   self.name = name;
   self.game = game;
   self.sprite = self.game.add.sprite(x, y, name);
+  // It works!
+  // self.sprite.blendMode = PIXI.blendModes.ADD;
   self.width = w;
   self.height = h;
   self.sprite.inputEnabled = true;
@@ -12,6 +14,7 @@ Component = function(game, id, name, x, y, w, h) {
   self.yGrid = null;
   self.xOld = null;
   self.yOld = null;
+  self.kind = kind;
 
   var dragUpdate = function(sprite, pointer, dragX, dragY, snapPoint) {
     template.hideAllSlots();
@@ -24,7 +27,12 @@ Component = function(game, id, name, x, y, w, h) {
     template.nonUsedComponents(self);
     template.spawnsThreeComponents();
     template.hideAllSlots();
-    template.toString();
+    if (template.isBasicWin()) {
+      template.cleanUp();
+      template.sprite = game.add.image(53, 63, 'ld36_win_001');
+      chainedTextsWithFinalTrigger(200, 20, ["You win", "Next level ?"], firstLevel);
+    }
+    // template.toString();
   }
 
   var onDragStart = function(sprite, pointeur) {
