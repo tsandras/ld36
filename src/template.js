@@ -1,4 +1,4 @@
-Template = function(game, name, grid, spriteName) {
+Template = function(game, name, grid, spriteName, text) {
   var self = this;
   self.id = 1;
   self.game = game;
@@ -6,6 +6,9 @@ Template = function(game, name, grid, spriteName) {
   self.index = 1;
   self.components = {};
   self.sprite = self.game.add.image(53, 63, spriteName);
+  self.text = self.game.add.text(0, 0, text, { font: "24px Georgia", fill: "#2f2320", align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 200});
+  self.text.setTextBounds(590, 20, 200, 115);
+  self.text.blendMode = PIXI.blendModes.COLOR_BURN;
 
   var createDefaultGrid = function () {
     out = []
@@ -282,6 +285,7 @@ Template = function(game, name, grid, spriteName) {
         }
       }
     }
+    self.text.destroy();
     self.sprite.destroy();
   }
 
