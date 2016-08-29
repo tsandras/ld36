@@ -55,7 +55,7 @@
     * Fail
 * Resources
   * Square+Raw
-    * 1x1
+    * ~~1x1~~
     * ~~1x2~~
     * ~~2x1~~
     * 2x2
