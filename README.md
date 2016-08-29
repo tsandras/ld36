@@ -13,9 +13,9 @@
 
 ### Basic rules
 
-* Spawns
-  * Display
-  * Random generation
+* ~~Spawns~~
+  * ~~Display~~
+  * ~~Random generation~~
 * Template loading
 * Win/lose condition
 
