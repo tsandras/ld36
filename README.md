@@ -17,20 +17,20 @@
   * ~~Display~~
   * ~~Random generation~~
 * ~~Template loading~~
-* Win/lose condition
+* ~~Win conditions~~
+* Lose conditions
 
 ### Advanced rules
 
 * Resources specifics
   * Types
-    * Raw
-    * Mechanics
+    * ~~Raw~~
+    * ~~Mechanics~~
     * Energy?
   * Shapes
     * Square
     * Round
 * Balancing
-  * Resources' rotation
   * Spawn conditions
 
 ### Assets
