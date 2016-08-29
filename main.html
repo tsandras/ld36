@@ -17,61 +17,35 @@
 
 <script type="text/javascript" src="vendor/phaser.min.js"></script>
 <script type="text/javascript" src="src/component.js"></script>
+<script type="text/javascript" src="src/square.js"></script>
 <script type="text/javascript" src="src/template.js"></script>
+
 <script type="text/javascript">
   var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
-  var componentTest = new Component(1, 'test');
 
   function preload() {
 
     game.load.image('box', 'box.png');
     game.load.image('tubing', 'tubing.jpg');
+    game.load.image('ld36_bg_001', 'assets/ld36_bg_001.png');
   }
-
-  var box;
-  var tubing;
 
   function create() {
 
     game.stage.backgroundColor = '#FFFFFF';
 
-    box = game.add.sprite(250, 250, 'box');
-    tubing = game.add.sprite(450, 450, 'tubing');
-
-    //  Input Enable the sprites
-    box.inputEnabled = true;
-
-    //  Allow dragging - the 'true' parameter will make the sprite snap to the center
-    box.input.enableDrag(true);
+    game.add.image(0, 0, 'ld36_bg_001');
+    c1 = new Component(game, 1, 'tubing', 253, 263, 1, 2);
+    b = new Component(game, 2, 'box', 453, 463, 1, 1);
 
     template = new Template(game, 'Test', null);
-    console.log(template);
     template.graphicGrid.visible = true;
 
-    box.events.onDragStop.add(onDragStop, {template: template});
-    box.events.onDragUpdate.add(dragUpdate, {template: template});
+    template.setComponent(c1, 10, 10);
+    template.setComponent(c1, 10, 11);
+    template.setComponent(b, 5, 5);
+    template.loadComponentsEvents();
+    // c1.loadEvents(template);
+    // b.loadEvents(template);
   }
-
-  function dragUpdate(sprite, pointer, dragX, dragY, snapPoint) {
-    console.log(sprite.position);
-    console.log(snapPoint);
-    console.log(pointer);
-    if (sprite.position.x <= 50) {
-      // sprite.input.draggable = false;
-      sprite.position.x = 50;
-    }
-    if (sprite.position.y <= 50) {
-      sprite.position.y = 50;
-    }
-    if (sprite.position.x >= 490) {
-      sprite.position.x = 490;
-    }
-    console.log(template);
-    template.respectComponents(sprite);
-  }
-
-  function onDragStop(sprite, pointeur) {
-    console.log('Stop');
-  }
-
 </script>
