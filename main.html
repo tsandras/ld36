@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
   <meta charset="UTF-8" />
-    <title>Cursed Bricks of the Ancient</title>
+    <title>Cursed bricks of the Ancient</title>
 	
 	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
@@ -15,7 +15,15 @@
     <style type="text/css">
         body {
             margin: 0;
+			width: 100%;
+			background-color: #000;
+			text-align: center;
+			font-family: Georgia, serif;
         }
+		#ld36 {
+			width:800px;
+			margin: 30px auto;
+		}
     </style>
 </head>
 <body>
@@ -31,19 +39,27 @@
     game.load.image('square+raw_1x2', 'assets/ld36_square+raw_1x2_001.png');
     game.load.image('square+raw_2x1', 'assets/ld36_square+raw_2x1_001.png');
     game.load.image('square+raw_1x1', 'assets/ld36_square+raw_1x1_001.png');
+	game.load.image('square+raw_2x2', 'assets/ld36_square+raw_2x2_001.png');
     game.load.image('ld36_bg_001', 'assets/ld36_bg_001.png');
     game.load.image('ld36_blueprint_001', 'assets/ld36_blueprint_001.png');
     game.load.image('ld36_win_001', 'assets/ld36_win_001.png');
     game.load.image('ld36_slots_001', 'assets/ld36_slots_001.png');
+	game.load.image('ld36_title_screen_001', 'assets/ld36_title_screen_001.png');
   }
 
   function create() {
     game.stage.backgroundColor = '#FFFFFF';
-    game.add.image(0, 0, 'ld36_bg_001');
-    var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
-    slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
-    var texts = ["Start", "Level 1 \nPyramid"];
-    chainedTextsWithFinalTrigger(590,20, texts, firstLevel);
+	// mon code tout sale
+	var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
+	titleScreen.inputEnabled = true;
+	titleScreen.events.onInputDown.addOnce(playGame, this);
+	  function playGame(){
+	    game.add.image(0, 0, 'ld36_bg_001');
+        var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
+        slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
+        var texts = ["Start", "Level 1 \nPyramid"];
+        chainedTextsWithFinalTrigger(590,20, texts, firstLevel);
+	  }
   }
 
   function firstLevel() {

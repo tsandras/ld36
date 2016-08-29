@@ -188,14 +188,15 @@ Template = function(game, name, grid, spriteName) {
     names = [
       ['square+raw_1x2', 1, 2, 'Raw'],
       ['square+raw_2x1', 2, 1, 'Raw'],
-      ['square+raw_1x1', 1, 1, 'Raw']
+      ['square+raw_1x1', 1, 1, 'Raw'],
+	  ['square+raw_2x2', 2, 2, 'Raw']
     ];
     var tmpX = 655;
     var tmpY = 200;
     var rand = 0;
     for (i = 0; i < 3; i++) {
       // Pas oublier de changer la valeur = names.length
-      rand = Math.floor(Math.random() * 3);
+      rand = Math.floor(Math.random() * 4);
       tmpX = 655;
       // case of 1x2
       if (names[rand][1] == 1 && names[rand][2] == 2) {
@@ -210,7 +211,7 @@ Template = function(game, name, grid, spriteName) {
         tmpY = tmpY + 20;
         tmpX = tmpX + 20;
       }
-      var c = new Component(game, self.index, names[rand][0], tmpX, tmpY, names[rand][1], names[rand][2], names[rand][3]);
+      var c = new Component(game, self.index, names[rand][0], tmpX, tmpY, names[rand][1], names[rand][2], names[rand][3], names[rand][4]);
       self.index = self.index + 1;
       c.loadEvents();
       self.setComponent(c, 12, 3 + 2*i);
