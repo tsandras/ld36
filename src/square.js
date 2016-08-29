@@ -14,12 +14,18 @@ Square = function(game, filled, kinds, component, x, y) {
 
   self.setInfo = function(game) {
     self.game = game;
-    graphics = self.game.add.graphics(self.x + 53, self.y + 63);
+    var graphics = self.game.add.graphics(self.x + 53, self.y + 63);
     graphics.beginFill(0xffffff, 0.3);
     graphics.drawRect(0, 0, 40, 40);
     self.info = graphics;
     self.info.visible = false;
     graphics.endFill();
+    var graphicsError = self.game.add.graphics(self.x + 53, self.y + 63);
+    graphicsError.beginFill(0x000044, 0.3);
+    graphicsError.drawRect(0, 0, 40, 40);
+    self.infoError = graphicsError;
+    self.infoError.visible = false;
+    graphicsError.endFill();
   }
 
   self.show = function() {
@@ -27,5 +33,9 @@ Square = function(game, filled, kinds, component, x, y) {
   }
   self.hide = function() {
     self.info.visible = false;
+    self.infoError.visible = false;
+  }
+  self.showError = function() {
+    self.infoError.visible = true;
   }
 }

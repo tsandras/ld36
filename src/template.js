@@ -96,8 +96,18 @@ Template = function(game, name, grid, spriteName, text) {
     var gridPosition = getGridPosition(sprite.position);
     var squares = getSlotsSize(component);
     if (withoutComponent(squares) && gridPosition.x < 12 && gridPosition.x >= 0) {
+      var ok = false;
       for (var i in squares) {
-        squares[i].show();
+        if (squares[i].filled) {
+          ok = true;
+        }
+      }
+      for (var i in squares) {
+        if (ok) {
+          squares[i].show();
+        } else {
+          squares[i].showError();
+        }
       }
     }
   }
@@ -315,6 +325,16 @@ Template = function(game, name, grid, spriteName, text) {
       return false;
     }
     if (gridPosition.x < 12 && gridPosition.y < 12) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // non used method, but maybe soon..
+  self.isInTemplate = function(component) {
+    var gridPosition = getGridPosition({x: component.sprite.position.x, y: component.sprite.position.y});
+    if (self.grid[gridPosition.x][gridPosition.x].filled) {
       return true;
     } else {
       return false;
