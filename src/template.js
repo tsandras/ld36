@@ -182,7 +182,7 @@ Template = function(game, name, grid) {
   }
 
   self.spawnsThreeComponents = function() {
-    names = [['tubing', 1, 2], ['box', 1, 1]];
+    names = [['square+raw_1x2', 1, 2], ['square+raw_2x1', 2, 1]];
     var tmpX = 655;
     var tmpY = 200;
     var rand = 0;

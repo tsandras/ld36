@@ -25,9 +25,8 @@
   var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
   var text = "";
   function preload() {
-
-    game.load.image('box', 'box.png');
-    game.load.image('tubing', 'tubing.jpg');
+    game.load.image('square+raw_1x2', 'assets/ld36_square+raw_1x2_001.png');
+    game.load.image('square+raw_2x1', 'assets/ld36_square+raw_2x1_001.png');
     game.load.image('ld36_bg_001', 'assets/ld36_bg_001.png');
     game.load.image('ld36_blueprint_001', 'assets/ld36_blueprint_001.png');
   }
