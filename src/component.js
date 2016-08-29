@@ -21,10 +21,12 @@ Component = function(game, id, name, x, y, w, h, kind) {
 
   var onDragStop = function(sprite, pointeur) {
     if (template.isInGrid(self)) {
-      template.putOnSlots(self);
-      template.setComponent(self, self.xGrid, self.yGrid);
-      template.nonUsedComponents(self);
-      template.spawnsThreeComponents();
+      var changed = template.putOnSlots(self);
+      if (changed) {
+        template.setComponent(self, self.xGrid, self.yGrid);
+        template.nonUsedComponents(self);
+        template.spawnsThreeComponents();
+      }
       template.hideAllSlots();
       if (template.isBasicWin()) {
         template.cleanUp();

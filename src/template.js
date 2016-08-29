@@ -152,15 +152,22 @@ Template = function(game, name, grid, spriteName, text) {
       component.yGrid = gridPosition.y;
     } else {
       var possibilities = snailSlots(component);
-      var chosen = minPossibility(possibilities, sprite);
-      sprite.position.x = chosen.x;
-      sprite.position.y = chosen.y;
-      var gridPosition = getGridPosition({x: chosen.x, y: chosen.y});
-      component.xGrid = gridPosition.x;
-      component.yGrid = gridPosition.y;
+      if (possibilities.length == 0) {
+        sprite.position.x = component.xOld;
+        sprite.position.y = component.yOld;
+        return false;
+      } else {
+        var chosen = minPossibility(possibilities, sprite);
+        sprite.position.x = chosen.x;
+        sprite.position.y = chosen.y;
+        var gridPosition = getGridPosition({x: chosen.x, y: chosen.y});
+        component.xGrid = gridPosition.x;
+        component.yGrid = gridPosition.y;
+      }
     }
     component.sprite.input.enableDrag(false);
     component.sprite.inputEnabled = false;
+    return true;
   }
 
   self.hideAllSlots = function() {
