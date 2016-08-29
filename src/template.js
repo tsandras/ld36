@@ -3,11 +3,12 @@ Template = function(game, name, grid) {
   self.id = 1;
   self.game = game;
   self.name = name;
+  self.index = 1;
   self.components = {};
 
   var createDefaultGrid = function () {
     out = []
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < 16; i++) {
       out[i] = []
       for (j = 0; j < 12; j++) {
         out[i][j] = new Square(game, false, 'default', null, 40 * i, j * 40);
@@ -16,13 +17,13 @@ Template = function(game, name, grid) {
     return out;
   }
 
-  var createGraphicGrid = function () {
+  self.createGraphicGrid = function () {
     graphics = self.game.add.graphics(53, 63);
     graphics.lineStyle(1, 0x000000, 1);
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < self.grid[0].length; i++) {
       graphics.moveTo(40 * i, 0);
       graphics.lineTo(40 * i, 480);
-      for (j = 0; j < 12; j++) {
+      for (j = 0; j < self.grid.length; j++) {
         graphics.moveTo(0, j * 40);
         graphics.lineTo(480, j * 40);
       }
@@ -34,65 +35,36 @@ Template = function(game, name, grid) {
     return graphics;
   }
 
-  self.graphicGrid = createGraphicGrid();
-
   if (grid) {
     self.grid = grid;
   } else {
     self.grid = createDefaultGrid();
   }
 
+  self.graphicGrid = self.createGraphicGrid();
+
+  for (i = 0; i < 12; i ++) {
+    for (j = 0; j < 18; j ++) {
+      self.grid[i][j].setInfo(self.game);
+    }
+  }
+
   var getGridPosition = function(position) {
-    // console.log(Math.floor((position.x - 53)/40));
-    // console.log(Math.floor((position.y - 63)/40));
-    // console.log((position.x - 53)/40);
-    // console.log((position.y - 63)/40);
     return ({x: Math.floor((position.x - 53)/40), y: Math.floor((position.y - 63)/40)});
-  }
-
-  var collision = function(sprite1, sprite2) {
-    if (sprite1.position.x >= sprite2.position.x - 40) {
-      sprite1.position.x = sprite2.position.x - 40;
-    }
-    if (sprite1.position.y >= sprite2.position.y - 40) {
-      sprite1.position.y = sprite2.position.y - 40;
-    }
-    return false;
-  }
-
-  self.respectComponents = function(component) {
-    var sprite = component.sprite;
-    var gridPosition = getGridPosition(sprite.position);
-    // console.log(self.grid[gridPosition.x][gridPosition.y]);
-    // var square = self.grid[gridPosition.x + 1][gridPosition.y];
-    // if (square && square.component && collision(sprite, square.component.sprite)) {
-    //   console.log('collision');
-    // }
-    // var square = self.grid[gridPosition.x][gridPosition.y + 1];
-    // if (square && square.component && collision(sprite, square.component.sprite)) {
-    //   console.log('collision');
-    // }
-    // if (square && square.component) {
-    //   console.log('ici !');
-    //   sprite.position.x = sprite.position.x - 40;
-    //   sprite.position.y = sprite.position.y - 40;
-    // }
   }
 
   var getSlots = function(component, position) {
     var squares = [];
-    // console.log(position);
     var gridPosition = getGridPosition(position);
-    // console.log(gridPosition);
-    squares.push(self.grid[gridPosition.x][gridPosition.y]);
+    squares.push(self.grid[gridPosition.y][gridPosition.x]);
     if (component.width > 1) {
-      squares.push(self.grid[gridPosition.x + 1][gridPosition.y]);
+      squares.push(self.grid[gridPosition.y][gridPosition.x + 1]);
     }
     if (component.height > 1) {
-      squares.push(self.grid[gridPosition.x][gridPosition.y + 1]);
+      squares.push(self.grid[gridPosition.y + 1][gridPosition.x]);
     }
     if (component.height > 1 && component.width > 1) {
-      squares.push(self.grid[gridPosition.x + 1][gridPosition.y + 1]);
+      squares.push(self.grid[gridPosition.y + 1][gridPosition.x + 1]);
     }
     return squares;
   }
@@ -102,7 +74,6 @@ Template = function(game, name, grid) {
   }
 
   var getPossibleSlotsSize = function(component, newPosition) {
-    // console.log(newPosition);
     return getSlots(component, newPosition);
   }
 
@@ -120,7 +91,7 @@ Template = function(game, name, grid) {
     var sprite = component.sprite;
     var gridPosition = getGridPosition(sprite.position);
     var squares = getSlotsSize(component);
-    if (withoutComponent(squares)) {
+    if (withoutComponent(squares) && gridPosition.x < 12) {
       for (var i in squares) {
         squares[i].show();
       }
@@ -137,7 +108,7 @@ Template = function(game, name, grid) {
         for (j = -l; j < l; j++) {
           tmpPosX = gridPosition.x + i;
           tmpPosY = gridPosition.y + j;
-          if (tmpPosX <= 11 && tmpPosY <= 11) {
+          if (tmpPosX < 12 && tmpPosY < 12) {
             var squares = getPossibleSlotsSize(component, {x: tmpPosY * 40 + 53, y: tmpPosY * 40 + 63});
             if (withoutComponent(squares)) {
               possibilities.push({x: squares[0].x + 53, y: squares[0].y + 63});
@@ -171,33 +142,107 @@ Template = function(game, name, grid) {
     if (withoutComponent(squares)) {
       sprite.position.x = squares[0].x + 53;
       sprite.position.y = squares[0].y + 63;
+      var gridPosition = getGridPosition({x: sprite.position.x, y: sprite.position.y});
+      component.xGrid = gridPosition.x;
+      component.yGrid = gridPosition.y;
     } else {
       var possibilities = snailSlots(component);
       var chosen = minPossibility(possibilities, sprite);
       sprite.position.x = chosen.x;
       sprite.position.y = chosen.y;
+      var gridPosition = getGridPosition({x: chosen.x, y: chosen.y});
+      component.xGrid = gridPosition.x;
+      component.yGrid = gridPosition.y;
     }
+    component.sprite.input.enableDrag(false);
+    component.sprite.inputEnabled = false;
   }
 
   self.hideAllSlots = function() {
     for (i = 0; i < 12; i++) {
-      for (j = 0; j < 12; j++) {
-        self.grid[i][j].hide();
+      for (j = 0; j < 18; j++) {
+        if (self.grid[i][j]) {
+          self.grid[i][j].hide();
+        }
       }
     }
   }
 
   self.setComponent = function(component, x, y) {
-    // console.log(self.grid[x][y]);
-    if (!self.components[component.id]) {
-      self.components[component.id] = component;
+    self.grid[y][x].component = component;
+    if (component.width > 1) {
+      self.grid[y][x + 1].component = component;
     }
-    self.grid[x][y].component = component;
+    if (component.height > 1) {
+      self.grid[y + 1][x].component = component;
+    }
+    if (component.height > 1 && component.width > 1) {
+      self.grid[y + 1][x + 1].component = component;
+    }
   }
 
-  self.loadComponentsEvents = function() {
-    for (var i in self.components) {
-      self.components[i].loadEvents(self);
+  self.spawnsThreeComponents = function() {
+    names = [['tubing', 1, 2], ['box', 1, 1]];
+    var tmpX = 655;
+    var tmpY = 200;
+    var rand = 0;
+    for (i = 0; i < 3; i++) {
+      rand = Math.floor(Math.random() * 2);
+      tmpX = 655;
+      if (names[rand][1] <= 1) {
+        tmpX = tmpX + 20;
+      }
+      if (names[rand][1] == 1 && names[rand][2] == 1) {
+        tmpY = tmpY + 20;
+      }
+      var c = new Component(game, self.index, names[rand][0], tmpX, tmpY, names[rand][1], names[rand][2]);
+      self.index = self.index + 1;
+      c.loadEvents();
+      self.setComponent(c, 12, 3 + 2*i);
+
+      if (names[rand][1] == 1 && names[rand][2] == 1) {
+        tmpY = tmpY + 80;
+      } else {
+        tmpY = tmpY + 100;
+      }
+    }
+    // self.loadComponentsEvents();
+  }
+
+  self.nonUsedComponents = function(chosen) {
+    for (i = 0; i < 12; i++) {
+      for (j = 12; j < 18; j++) {
+        if (self.grid[i][j] && self.grid[i][j].component) {
+          if (chosen.id != self.grid[i][j].component.id) {
+            self.grid[i][j].component.destroy();
+          }
+          self.grid[i][j].component = null;
+        }
+      }
     }
   }
+
+  self.toString = function() {
+    console.log('New toString');
+    var ligne = "";
+    for (i = 0; i < 12; i++) {
+      ligne = "";
+      for (j = 0; j < 18; j++) {
+        if (self.grid[i][j].component) {
+          ligne = ligne + "|" + self.grid[i][j].component.id;
+        } else {
+          ligne = ligne + "|";
+        }
+      }
+      console.log(ligne);
+    }
+  }
+
+  // self.loadComponentsEvents = function() {
+  //   for (var i in self.components) {
+  //     if (self.components[i]) {
+  //       self.components[i].loadEvents(self);
+  //     }
+  //   }
+  // }
 }

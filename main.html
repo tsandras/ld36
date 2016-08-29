@@ -19,33 +19,31 @@
 <script type="text/javascript" src="src/component.js"></script>
 <script type="text/javascript" src="src/square.js"></script>
 <script type="text/javascript" src="src/template.js"></script>
+<script type="text/javascript" src="src/levels.js"></script>
 
 <script type="text/javascript">
   var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
-
+  var text = "";
   function preload() {
 
     game.load.image('box', 'box.png');
     game.load.image('tubing', 'tubing.jpg');
     game.load.image('ld36_bg_001', 'assets/ld36_bg_001.png');
+    game.load.image('ld36_blueprint_001', 'assets/ld36_blueprint_001.png');
   }
 
   function create() {
-
     game.stage.backgroundColor = '#FFFFFF';
-
     game.add.image(0, 0, 'ld36_bg_001');
-    c1 = new Component(game, 1, 'tubing', 253, 263, 1, 2);
-    b = new Component(game, 2, 'box', 453, 463, 1, 1);
+    text = game.add.text(200, 20, "Start", { font: "14px Arial", fill: "#ff0044", align: "center" });
+    game.input.onDown.addOnce(removeText, this);
+  }
 
-    template = new Template(game, 'Test', null);
-    template.graphicGrid.visible = true;
-
-    template.setComponent(c1, 10, 10);
-    template.setComponent(c1, 10, 11);
-    template.setComponent(b, 5, 5);
-    template.loadComponentsEvents();
-    // c1.loadEvents(template);
-    // b.loadEvents(template);
+  function removeText() {
+    text.destroy();
+    game.add.image(53, 63, 'ld36_blueprint_001');
+    template = new Template(game, 'Pyramid', PYRAMIDE_GRID);
+    template.graphicGrid.visible = false;
+    template.spawnsThreeComponents();
   }
 </script>
