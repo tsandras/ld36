@@ -13,10 +13,10 @@
 
 ### Basic rules
 
-* Spawns
-  * Display
-  * Random generation
-* Template loading
+* ~~Spawns~~
+  * ~~Display~~
+  * ~~Random generation~~
+* ~~Template loading~~
 * Win/lose condition
 
 ### Advanced rules
@@ -56,9 +56,11 @@
 * Resources
   * Square+Raw
     * 1x1
-    * 1x2
+    * ~~1x2~~
+    * ~~2x1~~
     * 2x2
   * Round+Raw
     * 1x1
     * 1x2
+    * 2x1
     * 2x2
