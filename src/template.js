@@ -61,13 +61,13 @@ Template = function(game, name, grid, spriteName, text) {
     var squares = [];
     var gridPosition = getGridPosition(position);
     squares.push(self.grid[gridPosition.y][gridPosition.x]);
-    if (component.width > 1) {
+    if (component.width > 1 && gridPosition.x + 1 < 12) {
       squares.push(self.grid[gridPosition.y][gridPosition.x + 1]);
     }
-    if (component.height > 1) {
+    if (component.height > 1 && gridPosition.y + 1 < 12) {
       squares.push(self.grid[gridPosition.y + 1][gridPosition.x]);
     }
-    if (component.height > 1 && component.width > 1) {
+    if (component.height > 1 && component.width > 1 && gridPosition.x + 1 < 12 && gridPosition.y + 1 < 12) {
       squares.push(self.grid[gridPosition.y + 1][gridPosition.x + 1]);
     }
     return squares;
