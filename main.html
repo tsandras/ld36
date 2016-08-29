@@ -2,8 +2,12 @@
 <html lang="en"> 
 <head> 
   <meta charset="UTF-8" />
-    <title>ld36</title>
-  <script type="text/javascript" src="js/phaser.min.js"></script>
+    <title>Cursed Bricks of the Ancient</title>
+    <script type="text/javascript" src="vendor/phaser.min.js"></script>
+    <script type="text/javascript" src="src/component.js"></script>
+    <script type="text/javascript" src="src/square.js"></script>
+    <script type="text/javascript" src="src/template.js"></script>
+    <script type="text/javascript" src="src/levels.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -15,16 +19,11 @@
   </div>
 </body>
 
-<script type="text/javascript" src="vendor/phaser.min.js"></script>
-<script type="text/javascript" src="src/component.js"></script>
-<script type="text/javascript" src="src/square.js"></script>
-<script type="text/javascript" src="src/template.js"></script>
-<script type="text/javascript" src="src/levels.js"></script>
-
 <script type="text/javascript">
   var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
 
   function preload() {
+    // for each asset you must load image
     game.load.image('square+raw_1x2', 'assets/ld36_square+raw_1x2_001.png');
     game.load.image('square+raw_2x1', 'assets/ld36_square+raw_2x1_001.png');
     game.load.image('square+raw_1x1', 'assets/ld36_square+raw_1x1_001.png');
@@ -40,24 +39,12 @@
     var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
     slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
     var texts = ["Start", "Level 1 \nPyramid"];
-    //chainedTextsWithFinalTrigger(620, 30, texts, firstLevel);
     chainedTextsWithFinalTrigger(590,20, texts, firstLevel);
   }
 
   function firstLevel() {
-    // console.log('trigger method :-)');
-    // game.add.image(53, 63, 'ld36_blueprint_001');
     template = new Template(game, 'Pyramid', PYRAMIDE_GRID, 'ld36_blueprint_001');
-    // console.log(PYRAMIDE_GRID);
     template.graphicGrid.visible = false;
-    // gros test moche
-    // template.fillAll();
-    // if (template.isBasicWin()) {
-    //   chainedTextsWithFinalTrigger(200, 20, ["You win", "Next level ?"], firstLevel);
-    //   template.cleanUp();
-    //   template.sprite = game.add.image(53, 63, 'ld36_win_001');
-    // }
-    // console.log(template.grid);
     template.spawnsThreeComponents();
   }
 

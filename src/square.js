@@ -16,8 +16,6 @@ Square = function(game, filled, kinds, component, x, y) {
     self.game = game;
     graphics = self.game.add.graphics(self.x + 53, self.y + 63);
     graphics.beginFill(0xffffff, 0.3);
-    // It works!
-    // graphics.blendMode = PIXI.blendModes.ADD;
     graphics.drawRect(0, 0, 40, 40);
     self.info = graphics;
     self.info.visible = false;
@@ -25,13 +23,9 @@ Square = function(game, filled, kinds, component, x, y) {
   }
 
   self.show = function() {
-    // if (self.info) {
-      self.info.visible = true;
-    // }
+    self.info.visible = true;
   }
   self.hide = function() {
-    // if (self.info) {
-      self.info.visible = false;
-    // }
+    self.info.visible = false;
   }
 }

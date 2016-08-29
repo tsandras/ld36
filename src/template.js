@@ -92,7 +92,7 @@ Template = function(game, name, grid, spriteName) {
     var sprite = component.sprite;
     var gridPosition = getGridPosition(sprite.position);
     var squares = getSlotsSize(component);
-    if (withoutComponent(squares) && gridPosition.x < 12) {
+    if (withoutComponent(squares) && gridPosition.x < 12 && gridPosition.x >= 0) {
       for (var i in squares) {
         squares[i].show();
       }
@@ -140,7 +140,8 @@ Template = function(game, name, grid, spriteName) {
   self.putOnSlots = function(component) {
     var sprite = component.sprite;
     var squares = getSlotsSize(component);
-    if (withoutComponent(squares)) {
+    var gridPosition = getGridPosition(component.sprite.position);
+    if (withoutComponent(squares) && gridPosition.x >= 0) {
       sprite.position.x = squares[0].x + 53;
       sprite.position.y = squares[0].y + 63;
       var gridPosition = getGridPosition({x: sprite.position.x, y: sprite.position.y});
@@ -222,7 +223,6 @@ Template = function(game, name, grid, spriteName) {
         tmpY = tmpY + 100;
       }
     }
-    // self.loadComponentsEvents();
   }
 
   self.nonUsedComponents = function(chosen) {
@@ -262,7 +262,7 @@ Template = function(game, name, grid, spriteName) {
         tmpSquare = self.grid[i][j];
         if (tmpSquare.filled) {
           if (tmpSquare.component && tmpSquare.kinds.includes(tmpSquare.component.kind)) {
-            // lol
+            // todo lose conditions
           } else {
             win = false;
           }
@@ -290,6 +290,18 @@ Template = function(game, name, grid, spriteName) {
         test = new Component(self.game, i + j, 'test', i * 40 + 53, j * 40 + 63, 1, 1, 'Raw') 
         self.setComponent(test, i, j);
       }
+    }
+  }
+
+  self.isInGrid = function(component) {
+    var gridPosition = getGridPosition({x: component.sprite.position.x, y: component.sprite.position.y});
+    if (gridPosition.x < 0) {
+      return false;
+    }
+    if (gridPosition.x < 12 && gridPosition.y < 12) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

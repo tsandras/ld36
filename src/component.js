@@ -4,8 +4,6 @@ Component = function(game, id, name, x, y, w, h, kind) {
   self.name = name;
   self.game = game;
   self.sprite = self.game.add.sprite(x, y, name);
-  // It works!
-  // self.sprite.blendMode = PIXI.blendModes.ADD;
   self.width = w;
   self.height = h;
   self.sprite.inputEnabled = true;
@@ -22,26 +20,30 @@ Component = function(game, id, name, x, y, w, h, kind) {
   }
 
   var onDragStop = function(sprite, pointeur) {
-    template.putOnSlots(self);
-    template.setComponent(self, self.xGrid, self.yGrid);
-    template.nonUsedComponents(self);
-    template.spawnsThreeComponents();
-    template.hideAllSlots();
-    if (template.isBasicWin()) {
-      template.cleanUp();
-      template.sprite = game.add.image(53, 63, 'ld36_win_001');
-      chainedTextsWithFinalTrigger(200, 20, ["You win", "Next level ?"], firstLevel);
+    if (template.isInGrid(self)) {
+      template.putOnSlots(self);
+      template.setComponent(self, self.xGrid, self.yGrid);
+      template.nonUsedComponents(self);
+      template.spawnsThreeComponents();
+      template.hideAllSlots();
+      if (template.isBasicWin()) {
+        template.cleanUp();
+        template.sprite = game.add.image(53, 63, 'ld36_win_001');
+        chainedTextsWithFinalTrigger(590, 20, ["You win!", "Restart?"], firstLevel);
+      }
+    } else {
+      self.sprite.position.x = self.xOld;
+      self.sprite.position.y = self.yOld;
     }
-    // template.toString();
   }
 
   var onDragStart = function(sprite, pointeur) {
-    self.xOld = Math.floor((self.sprite.position.x - 53)/40);
-    self.yOld = Math.floor((self.sprite.position.y - 63)/40);
+    self.xOld = self.sprite.position.x;
+    self.yOld = self.sprite.position.y;
   }
 
   self.loadEvents = function(template) {
-    self.sprite.events.onDragStart.add(onDragStart, {template: template});
+    self.sprite.events.onInputDown.add(onDragStart, {template: template});
     self.sprite.events.onDragStop.add(onDragStop, {template: template});
     self.sprite.events.onDragUpdate.add(dragUpdate, {template: template});
   }
