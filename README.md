@@ -2,7 +2,7 @@
 
 ## TODO
 
-### Proto test
+### Proto test [DONE]
 
 * ~~Display image~~
 * ~~Move image~~
@@ -10,6 +10,27 @@
 * ~~Grid based design~~
   * ~~Visual feedback~~
   * ~~Drag&Drop~~
+
+### Basic rules
+
+* Spawns
+  * Display
+  * Random generation
+* Template loading
+* Win/lose condition
+
+### Advanced rules
+
+* Resources specifics
+  * Types
+    * Raw
+    * Mechanics
+    * Energy?
+  * Shapes
+    * Square
+    * Round
+* Balancing
+  * Spawn conditions
 
 ### Assets
 
