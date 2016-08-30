@@ -60,6 +60,9 @@ Template = function(game, name, grid, spriteName, text) {
   var getSlots = function(component, position) {
     var squares = [];
     var gridPosition = getGridPosition(position);
+    if (gridPosition.x < 0 || gridPosition.y < 0 || gridPosition.x > 12 || gridPosition.y > 12) {
+      return squares;
+    }
     squares.push(self.grid[gridPosition.y][gridPosition.x]);
     if (component.width > 1 && gridPosition.x + 1 < 12) {
       squares.push(self.grid[gridPosition.y][gridPosition.x + 1]);
@@ -67,7 +70,7 @@ Template = function(game, name, grid, spriteName, text) {
     if (component.height > 1 && gridPosition.y + 1 < 12) {
       squares.push(self.grid[gridPosition.y + 1][gridPosition.x]);
     }
-    if (component.height > 1 && component.width > 1 && gridPosition.x + 1 < 12 && gridPosition.y + 1 < 12) {
+    if (component.height > 1 && component.width > 1) {
       squares.push(self.grid[gridPosition.y + 1][gridPosition.x + 1]);
     }
     return squares;
@@ -124,7 +127,7 @@ Template = function(game, name, grid, spriteName, text) {
           tmpPosY = gridPosition.y + j;
           if (tmpPosX < 12 && tmpPosY < 12) {
             var squares = getPossibleSlotsSize(component, {x: tmpPosY * 40 + 53, y: tmpPosY * 40 + 63});
-            if (withoutComponent(squares)) {
+            if (squares.length > 0 && withoutComponent(squares)) {
               possibilities.push({x: squares[0].x + 53, y: squares[0].y + 63});
             }
           }
