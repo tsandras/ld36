@@ -58,21 +58,11 @@ function Grid(game, squares) {
     }
   }
 
-  var withoutComponent = function(squares) {
-    var ok = true;
-    for (var i in squares) {
-      if (squares[i] && squares[i].component) {
-        ok = false
-      }
-    }
-    return ok;
-  }
-
   self.showSlots = function(component) {
     var sprite = component.sprite;
     var gridPosition = Helper.getGridPosition(sprite.position);
     var squares = Helper.getSlotsSize(self, component);
-    if (withoutComponent(squares) && gridPosition.x < 12 && gridPosition.x >= 0) {
+    if (Helper.withoutComponent(squares) && gridPosition.x < 12 && gridPosition.x >= 0) {
       var ok = false;
       for (var i in squares) {
         if (squares[i].filled) {
@@ -93,7 +83,7 @@ function Grid(game, squares) {
     var sprite = component.sprite;
     var squares = Helper.getSlotsSize(self, component);
     var gridPosition = Helper.getGridPosition(component.sprite.position);
-    if (withoutComponent(squares) && gridPosition.x >= 0) {
+    if (Helper.withoutComponent(squares) && gridPosition.x >= 0) {
       sprite.position.x = squares[0].x + 53;
       sprite.position.y = squares[0].y + 63;
       var gridPosition = Helper.getGridPosition({x: sprite.position.x, y: sprite.position.y});

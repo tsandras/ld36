@@ -4,6 +4,16 @@ Helper.getGridPosition = function(position) {
     return ({x: Math.floor((position.x - 53)/40), y: Math.floor((position.y - 63)/40)});
   }
 
+Helper.withoutComponent = function(squares) {
+  var ok = true;
+  for (var i in squares) {
+    if (squares[i] && squares[i].component) {
+      ok = false
+    }
+  }
+  return ok;
+}
+
 Helper.getSlots = function(grid, component, position) {
   var squares = [];
   var gridPosition = Helper.getGridPosition(position);
@@ -31,7 +41,7 @@ Helper.getPossibleSlotsSize = function(grid, component, newPosition) {
   return Helper.getSlots(grid, component, newPosition);
 }
 
-Helper.snailSlots = function(component) {
+Helper.snailSlots = function(grid, component) {
   var possibilities = [];
   var tmpPosX = 0;
   var tmpPosY = 0;
@@ -42,8 +52,8 @@ Helper.snailSlots = function(component) {
         tmpPosX = gridPosition.x + i;
         tmpPosY = gridPosition.y + j;
         if (tmpPosX < 12 && tmpPosY < 12) {
-          var squares = Helper.getPossibleSlotsSize(component, {x: tmpPosY * 40 + 53, y: tmpPosY * 40 + 63});
-          if (squares.length > 0 && withoutComponent(squares)) {
+          var squares = Helper.getPossibleSlotsSize(grid, component, {x: tmpPosY * 40 + 53, y: tmpPosY * 40 + 63});
+          if (squares.length > 0 && Helper.withoutComponent(squares)) {
             possibilities.push({x: squares[0].x + 53, y: squares[0].y + 63});
           }
         }
