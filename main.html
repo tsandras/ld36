@@ -7,9 +7,11 @@
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style/style.css" type="text/css">
   <script type="text/javascript" src="vendor/phaser.min.js"></script>
+  <script type="text/javascript" src="src/helper.js"></script>
   <script type="text/javascript" src="src/component.js"></script>
   <script type="text/javascript" src="src/square.js"></script>
   <script type="text/javascript" src="src/template.js"></script>
+  <script type="text/javascript" src="src/grid.js"></script>
   <script type="text/javascript" src="src/levels.js"></script>
 </head>
 <body>
@@ -36,8 +38,6 @@
     game.load.image('ld36_win_001', 'assets/ld36_win_001.png');
     game.load.image('ld36_slots_001', 'assets/ld36_slots_001.png');
     game.load.image('ld36_title_screen_001', 'assets/ld36_title_screen_001.png');
-    game.load.image('ld36_cursor_001', 'assets/ld36_cursor_001.png');
-    game.load.image('ld36_cursor_002', 'assets/ld36_cursor_002.png');
   }
   function create() {
     game.stage.backgroundColor = '#FFFFFF';
@@ -56,9 +56,10 @@
     }
   }
   function firstLevel() {
-    template = new Template(game, 'Pyramid', PYRAMIDE_GRID, 'ld36_blueprint_001', 'Level 1 \nPyramid');
-    template.graphicGrid.visible = false;
-    template.spawnsThreeComponents();
+    grid = new Grid(game);
+    template = new Template(game, 'Pyramid', 'ld36_blueprint_001', 'Level 1 \nPyramid');
+    grid.setTemplate(template, PYRAMIDE_GRID);
+    grid.spawnsComponents();
   }
   function chainedTextsWithFinalTrigger(x, y, texts, triggerMethod) {
     var current = 0;

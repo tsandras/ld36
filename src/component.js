@@ -15,28 +15,28 @@ Component = function(game, id, name, x, y, w, h, kind) {
   self.kind = kind;
 
   var dragUpdate = function(sprite, pointer, dragX, dragY, snapPoint) {
-    template.hideAllSlots();
-    template.showSlots(self);
+    grid.hideAllInfos();
+    grid.showSlots(self);
   }
 
   var onDragStop = function(sprite, pointeur) {
-    if (template.isInGrid(self)) {
-      var changed = template.putOnSlots(self);
+    if (grid.isInGrid(self)) {
+      var changed = grid.putOnSlots(self);
       if (changed) {
-        template.setComponent(self, self.xGrid, self.yGrid);
-        template.nonUsedComponents(self);
-        template.spawnsThreeComponents();
+        grid.setComponent(self, self.xGrid, self.yGrid);
+        grid.nonUsedComponents(self);
+        grid.spawnsComponents();
       }
-      if (template.isBasicWin()) {
-        template.cleanUp();
-        template.sprite = game.add.image(53, 63, 'ld36_win_001');
+      if (grid.isBasicWin()) {
+        grid.cleanUp();
+        grid.sprite = game.add.image(53, 63, 'ld36_win_001');
         chainedTextsWithFinalTrigger(0, -150, ["Impressive... Most impressive. \n\n(click to restart)"], firstLevel);
       }
     } else {
       self.sprite.position.x = self.xOld;
       self.sprite.position.y = self.yOld;
     }
-    template.hideAllSlots();
+    grid.hideAllInfos();
   }
 
   var onDragStart = function(sprite, pointeur) {
@@ -54,12 +54,12 @@ Component = function(game, id, name, x, y, w, h, kind) {
     htmlGame.style.cursor = "url('assets/ld36_cursor_001.png'), auto";
   }
 
-  self.loadEvents = function(template) {
-    self.sprite.events.onInputDown.add(onDragStart, {template: template});
-    self.sprite.events.onDragStop.add(onDragStop, {template: template});
-    self.sprite.events.onDragUpdate.add(dragUpdate, {template: template});
-    self.sprite.events.onInputOver.add(over, {template: template});
-    self.sprite.events.onInputOut.add(out, {template: template});
+  self.loadEvents = function(grid) {
+    self.sprite.events.onInputDown.add(onDragStart, {grid: grid});
+    self.sprite.events.onDragStop.add(onDragStop, {grid: grid});
+    self.sprite.events.onDragUpdate.add(dragUpdate, {grid: grid});
+    self.sprite.events.onInputOver.add(over, {grid: grid});
+    self.sprite.events.onInputOut.add(out, {grid: grid});
   }
 
   self.destroy = function() {
