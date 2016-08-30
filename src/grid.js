@@ -200,6 +200,6 @@ function Grid(game, squares) {
   }
 
   self.isBasicWin = function() {
-    self.template.isBasicWin(self);
+    return self.template.isBasicWin(self);
   }
 }
