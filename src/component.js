@@ -29,7 +29,7 @@ Component = function(game, id, name, x, y, w, h, kind) {
       }
       if (grid.isBasicWin()) {
         grid.cleanUp();
-        grid.sprite = game.add.image(53, 63, 'ld36_win_001');
+        grid.sprite = game.add.image(GRID_X, GRID_Y, 'ld36_win_001');
         chainedTextsWithFinalTrigger(0, -150, ["Impressive... Most impressive. \n\n(click to restart)"], firstLevel);
       }
     } else {

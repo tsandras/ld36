@@ -1,7 +1,7 @@
 function Helper() {}
 
 Helper.getGridPosition = function(position) {
-    return ({x: Math.floor((position.x - 53)/40), y: Math.floor((position.y - 63)/40)});
+    return ({x: Math.floor((position.x - GRID_X)/SQUARE_WIDTH), y: Math.floor((position.y - GRID_Y)/SQUARE_WIDTH)});
   }
 
 Helper.withoutComponent = function(squares) {
@@ -17,17 +17,17 @@ Helper.withoutComponent = function(squares) {
 Helper.getSlots = function(grid, component, position) {
   var squares = [];
   var gridPosition = Helper.getGridPosition(position);
-  if (gridPosition.x < 0 || gridPosition.y < 0 || gridPosition.x > 11 || gridPosition.y > 11) {
+  if (gridPosition.x < 0 || gridPosition.y < 0 || gridPosition.x >= GRID_SQUARES_Y || gridPosition.y >= GRID_SQUARES_Y) {
     return squares;
   }
   squares.push(grid.squares[gridPosition.y][gridPosition.x]);
-  if (component.width > 1 && gridPosition.x + 1 < 12) {
+  if (component.width > 1 && gridPosition.x + 1 < GRID_SQUARES_Y) {
     squares.push(grid.squares[gridPosition.y][gridPosition.x + 1]);
   }
-  if (component.height > 1 && gridPosition.y + 1 < 12) {
+  if (component.height > 1 && gridPosition.y + 1 < GRID_SQUARES_Y) {
     squares.push(grid.squares[gridPosition.y + 1][gridPosition.x]);
   }
-  if (component.height > 1 && component.width > 1 && gridPosition.x + 1 < 12 && gridPosition.y + 1 < 12) {
+  if (component.height > 1 && component.width > 1 && gridPosition.x + 1 < GRID_SQUARES_Y && gridPosition.y + 1 < GRID_SQUARES_Y) {
     squares.push(grid.squares[gridPosition.y + 1][gridPosition.x + 1]);
   }
   return squares;
@@ -51,10 +51,12 @@ Helper.snailSlots = function(grid, component) {
       for (j = -l; j < l; j++) {
         tmpPosX = gridPosition.x + i;
         tmpPosY = gridPosition.y + j;
-        if (tmpPosX < 12 && tmpPosY < 12) {
-          var squares = Helper.getPossibleSlotsSize(grid, component, {x: tmpPosY * 40 + 53, y: tmpPosY * 40 + 63});
+        if (tmpPosX < GRID_SQUARES_Y && tmpPosY < GRID_SQUARES_Y) {
+          var squares = Helper.getPossibleSlotsSize(
+            grid, component, { x: tmpPosY * SQUARE_WIDTH + GRID_X, y: tmpPosY * SQUARE_WIDTH + GRID_Y }
+          );
           if (squares.length > 0 && Helper.withoutComponent(squares)) {
-            possibilities.push({x: squares[0].x + 53, y: squares[0].y + 63});
+            possibilities.push({x: squares[0].x + GRID_X, y: squares[0].y + GRID_Y});
           }
         }
       }

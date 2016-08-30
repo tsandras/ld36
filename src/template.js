@@ -5,8 +5,8 @@ Template = function(game, name, spriteName, text) {
   self.name = name;
   self.index = 1;
   self.components = {};
-  self.sprite = self.game.add.image(53, 63, spriteName);
-  self.text = self.game.add.text(0, 0, text, { font: "24px Georgia", fill: "#2f2320", align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 200});
+  self.sprite = self.game.add.image(GRID_X, GRID_Y, spriteName);
+  self.text = self.game.add.text(0, 0, text, { font: "24px Georgia", fill: TEXT_COLOR, align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 200});
   self.text.setTextBounds(590, 20, 200, 115);
   self.text.blendMode = PIXI.blendModes.COLOR_BURN;
 
@@ -60,8 +60,8 @@ Template = function(game, name, spriteName, text) {
   self.isBasicWin = function(grid) {
     var win = true;
     var tmpSquare = null;
-    for (i = 0; i < 12; i++) {
-      for (j = 0; j < 12; j++) {
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
+      for (j = 0; j < GRID_SQUARES_Y; j++) {
         tmpSquare = grid.squares[i][j];
         if (tmpSquare.filled) {
           if (tmpSquare.component && tmpSquare.kinds.includes(tmpSquare.component.kind)) {

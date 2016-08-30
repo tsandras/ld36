@@ -16,14 +16,14 @@ function Grid(game, squares) {
   }
 
   self.createGraphicGrid = function () {
-    graphics = self.game.add.graphics(53, 63);
+    graphics = self.game.add.graphics(GRID_X, GRID_Y);
     graphics.lineStyle(1, 0x000000, 1);
     for (i = 0; i < self.squares[0].length; i++) {
-      graphics.moveTo(40 * i, 0);
-      graphics.lineTo(40 * i, 480);
+      graphics.moveTo(SQUARE_WIDTH * i, 0);
+      graphics.lineTo(SQUARE_WIDTH * i, 480);
       for (j = 0; j < self.squares.length; j++) {
-        graphics.moveTo(0, j * 40);
-        graphics.lineTo(480, j * 40);
+        graphics.moveTo(0, j * SQUARE_WIDTH);
+        graphics.lineTo(480, j * SQUARE_WIDTH);
       }
     }
     graphics.moveTo(480, 0);
@@ -42,8 +42,8 @@ function Grid(game, squares) {
   self.graphicSquares = self.createGraphicGrid();
   self.graphicSquares.visible = false;
 
-  for (i = 0; i < 12; i ++) {
-    for (j = 0; j < 18; j ++) {
+  for (i = 0; i < GRID_SQUARES_Y; i ++) {
+    for (j = 0; j < GRID_SQUARES_X; j ++) {
       self.squares[i][j].setInfo(self.game);
     }
   }
@@ -51,8 +51,8 @@ function Grid(game, squares) {
   self.setTemplate = function(template, squares) {
     self.template = template;
     self.squares = squares;
-    for (i = 0; i < 12; i ++) {
-      for (j = 0; j < 18; j ++) {
+    for (i = 0; i < GRID_SQUARES_Y; i ++) {
+      for (j = 0; j < GRID_SQUARES_X; j ++) {
         self.squares[i][j].setInfo(self.game);
       }
     }
@@ -84,8 +84,8 @@ function Grid(game, squares) {
     var squares = Helper.getSlotsSize(self, component);
     var gridPosition = Helper.getGridPosition(component.sprite.position);
     if (Helper.withoutComponent(squares) && gridPosition.x >= 0) {
-      sprite.position.x = squares[0].x + 53;
-      sprite.position.y = squares[0].y + 63;
+      sprite.position.x = squares[0].x + GRID_X;
+      sprite.position.y = squares[0].y + GRID_Y;
       var gridPosition = Helper.getGridPosition({x: sprite.position.x, y: sprite.position.y});
       component.xGrid = gridPosition.x;
       component.yGrid = gridPosition.y;
@@ -110,8 +110,8 @@ function Grid(game, squares) {
   }
 
   self.hideAllInfos = function() {
-    for (i = 0; i < 12; i++) {
-      for (j = 0; j < 18; j++) {
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
+      for (j = 0; j < GRID_SQUARES_X; j++) {
         if (self.squares[i][j]) {
           self.squares[i][j].hide();
         }
@@ -133,8 +133,8 @@ function Grid(game, squares) {
   }
 
   self.nonUsedComponents = function(chosen) {
-    for (i = 0; i < 12; i++) {
-      for (j = 12; j < 18; j++) {
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
+      for (j = GRID_SQUARES_Y; j < GRID_SQUARES_X; j++) {
         if (self.squares[i][j] && self.squares[i][j].component) {
           if (chosen.id != self.squares[i][j].component.id) {
             self.squares[i][j].component.destroy();
@@ -148,9 +148,9 @@ function Grid(game, squares) {
   self.toString = function() {
     console.log('New toString');
     var ligne = "";
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
       ligne = "";
-      for (j = 0; j < 18; j++) {
+      for (j = 0; j < GRID_SQUARES_X; j++) {
         if (self.squares[i][j].component) {
           ligne = ligne + "|" + self.squares[i][j].component.id;
         } else {
@@ -162,8 +162,8 @@ function Grid(game, squares) {
   }
 
   self.cleanUp = function() {
-    for (i = 0; i < 12; i++) {
-      for (j = 0; j < 18; j++) {
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
+      for (j = 0; j < GRID_SQUARES_X; j++) {
         if (self.squares[i][j].component) {
           self.squares[i][j].component.destroy();
           self.squares[i][j].component = null;
@@ -179,16 +179,16 @@ function Grid(game, squares) {
     if (gridPosition.x < 0) {
       return false;
     }
-    if (component.width > 1 && gridPosition.x + 1 >= 12) {
+    if (component.width > 1 && gridPosition.x + 1 >= GRID_SQUARES_Y) {
       return false;
     }
-    if (component.height > 1 && gridPosition.y + 1 >= 12) {
+    if (component.height > 1 && gridPosition.y + 1 >= GRID_SQUARES_Y) {
       return false;
     }
     if (gridPosition.y < 0) {
       return false;
     }
-    if (gridPosition.x < 12 && gridPosition.y < 12) {
+    if (gridPosition.x < GRID_SQUARES_Y && gridPosition.y < GRID_SQUARES_Y) {
       return true;
     } else {
       return false;
