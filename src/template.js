@@ -324,6 +324,12 @@ Template = function(game, name, grid, spriteName, text) {
     if (gridPosition.x < 0) {
       return false;
     }
+    if (component.width > 1 && gridPosition.x + 1 >= 12) {
+      return false;
+    }
+    if (component.height > 1 && gridPosition.y + 1 >= 12) {
+      return false;
+    }
     if (gridPosition.x < 12 && gridPosition.y < 12) {
       return true;
     } else {

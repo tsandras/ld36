@@ -8,6 +8,7 @@ Component = function(game, id, name, x, y, w, h, kind) {
   self.height = h;
   self.sprite.inputEnabled = true;
   self.sprite.input.enableDrag(true);
+  // self.sprite.input.useHandCursor = true;
   self.xGrid = null;
   self.yGrid = null;
   self.xOld = null;
@@ -27,7 +28,6 @@ Component = function(game, id, name, x, y, w, h, kind) {
         template.nonUsedComponents(self);
         template.spawnsThreeComponents();
       }
-      template.hideAllSlots();
       if (template.isBasicWin()) {
         template.cleanUp();
         template.sprite = game.add.image(53, 63, 'ld36_win_001');
@@ -37,6 +37,7 @@ Component = function(game, id, name, x, y, w, h, kind) {
       self.sprite.position.x = self.xOld;
       self.sprite.position.y = self.yOld;
     }
+    template.hideAllSlots();
   }
 
   var onDragStart = function(sprite, pointeur) {
