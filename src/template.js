@@ -330,6 +330,9 @@ Template = function(game, name, grid, spriteName, text) {
     if (component.height > 1 && gridPosition.y + 1 >= 12) {
       return false;
     }
+    if (gridPosition.y < 0) {
+      return false;
+    }
     if (gridPosition.x < 12 && gridPosition.y < 12) {
       return true;
     } else {
