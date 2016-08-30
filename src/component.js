@@ -30,7 +30,7 @@ Component = function(game, id, name, x, y, w, h, kind) {
       if (template.isBasicWin()) {
         template.cleanUp();
         template.sprite = game.add.image(53, 63, 'ld36_win_001');
-        chainedTextsWithFinalTrigger(0, -150, ["Impressive... Most impressive. \n\n(click to continue)"], firstLevel);
+        chainedTextsWithFinalTrigger(0, -150, ["Impressive... Most impressive. \n\n(click to restart)"], firstLevel);
       }
     } else {
       self.sprite.position.x = self.xOld;

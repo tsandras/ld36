@@ -25,7 +25,6 @@
 
 <script type="text/javascript">
   var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
-
   function preload() {
     // for each asset you must load image
     game.load.image('square+raw_1x2', 'assets/ld36_square+raw_1x2_001.png');
@@ -40,7 +39,6 @@
     game.load.image('ld36_cursor_001', 'assets/ld36_cursor_001.png');
     game.load.image('ld36_cursor_002', 'assets/ld36_cursor_002.png');
   }
-
   function create() {
     game.stage.backgroundColor = '#FFFFFF';
     // mon code tout sale
@@ -57,13 +55,11 @@
       chainedTextsWithFinalTrigger(0,0, texts, firstLevel);
     }
   }
-
   function firstLevel() {
     template = new Template(game, 'Pyramid', PYRAMIDE_GRID, 'ld36_blueprint_001', 'Level 1 \nPyramid');
     template.graphicGrid.visible = false;
     template.spawnsThreeComponents();
   }
-
   function chainedTextsWithFinalTrigger(x, y, texts, triggerMethod) {
     var current = 0;
     lastText = game.add.text(x, y, texts[current], { font: "24px Georgia", fill: "#2f2320", align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 460});
@@ -72,7 +68,6 @@
     current = current + 1;
     game.input.onDown.addOnce(showNext, {x: x, y: y, lastText: lastText, texts: texts, current: current, method: triggerMethod}, this);
   }
-
   function showNext() {
     this.lastText.destroy()
     this.lastText = game.add.text(this.x, this.y, this.texts[this.current], { font: "30px Georgia", fill: "#2f2320", align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 200});
