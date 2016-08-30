@@ -2,43 +2,24 @@
 <html lang="en"> 
 <head> 
   <meta charset="UTF-8" />
-    <title>Cursed bricks of the Ancient</title>
-	
-	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-	
-    <script type="text/javascript" src="vendor/phaser.min.js"></script>
-    <script type="text/javascript" src="src/component.js"></script>
-    <script type="text/javascript" src="src/square.js"></script>
-    <script type="text/javascript" src="src/template.js"></script>
-    <script type="text/javascript" src="src/levels.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-			width: 100%;
-			color: #ccc;
-			background-color: #000;
-			text-align: center;
-			font-family: Georgia, serif;
-        }
-		#ld36 {
-			width:800px;
-			margin: 30px auto;
-			cursor: url("assets/ld36_cursor_001.png"), pointer;
-		}
-		a{
-			color: #fff;
-		}
-    </style>
+  <title>Cursed bricks of the Ancient</title>
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style/style.css" type="text/css">
+  <script type="text/javascript" src="vendor/phaser.min.js"></script>
+  <script type="text/javascript" src="src/component.js"></script>
+  <script type="text/javascript" src="src/square.js"></script>
+  <script type="text/javascript" src="src/template.js"></script>
+  <script type="text/javascript" src="src/levels.js"></script>
 </head>
 <body>
   <div id="ld36">
   </div>
   <p>
-	A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>
+    A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>
   </p>
-   <p>
-	See on <a href="https://github.com/tsandras/ld36">Git Hub</a>
+  <p>
+    See on <a href="https://github.com/tsandras/ld36">Git Hub</a>
   </p>
 </body>
 
@@ -56,8 +37,8 @@
     game.load.image('ld36_win_001', 'assets/ld36_win_001.png');
     game.load.image('ld36_slots_001', 'assets/ld36_slots_001.png');
     game.load.image('ld36_title_screen_001', 'assets/ld36_title_screen_001.png');
-	//game.load.image('ld36_cursor_001', 'assets/ld36_cursor_001.png');
-	//game.load.image('ld36_cursor_002', 'assets/ld36_cursor_002.png');
+    game.load.image('ld36_cursor_001', 'assets/ld36_cursor_001.png');
+    game.load.image('ld36_cursor_002', 'assets/ld36_cursor_002.png');
   }
 
   function create() {

@@ -8,7 +8,6 @@ Component = function(game, id, name, x, y, w, h, kind) {
   self.height = h;
   self.sprite.inputEnabled = true;
   self.sprite.input.enableDrag(true);
-  // self.sprite.input.useHandCursor = true;
   self.xGrid = null;
   self.yGrid = null;
   self.xOld = null;
@@ -45,10 +44,22 @@ Component = function(game, id, name, x, y, w, h, kind) {
     self.yOld = self.sprite.position.y;
   }
 
+  var over = function(sprite, pointeur) {
+    var htmlGame = document.getElementById('ld36');
+    htmlGame.style.cursor = "url('assets/ld36_cursor_002.png'), auto";
+  }
+
+  var out = function(sprite, pointeur) {
+    var htmlGame = document.getElementById('ld36');
+    htmlGame.style.cursor = "url('assets/ld36_cursor_001.png'), auto";
+  }
+
   self.loadEvents = function(template) {
     self.sprite.events.onInputDown.add(onDragStart, {template: template});
     self.sprite.events.onDragStop.add(onDragStop, {template: template});
     self.sprite.events.onDragUpdate.add(dragUpdate, {template: template});
+    self.sprite.events.onInputOver.add(over, {template: template});
+    self.sprite.events.onInputOut.add(out, {template: template});
   }
 
   self.destroy = function() {
