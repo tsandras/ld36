@@ -38,10 +38,9 @@
 * ~~Bg~~
 * ~~Title Screen~~
 * ~~Favicon~~
-* Pointers
-  * Select
-  * Hover
-  * Click
+* ~~Pointers~~
+  * ~~Default~~
+  * ~~Drag&Drop~~
 * Templates
   * Pyramid
     * ~~Blueprint~~
@@ -75,5 +74,5 @@
 
 #### Design
 
-* too much 2*2 bricks
-* change highlight to another color when over a wrong grid slot
+* ~~too much 2*2 bricks~~
+* ~~change highlight to another color when over a wrong grid slot~~
