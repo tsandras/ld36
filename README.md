@@ -1,5 +1,7 @@
 # Ludum dare 36 :-)
 
+[Our Ludum Dare submission](http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=26047)! \o/
+
 ## TODO
 
 ### Proto test [DONE]
