@@ -39,6 +39,7 @@
     game.load.image('ld36_win_001', 'assets/ld36_win_001.png');
     game.load.image('ld36_slots_001', 'assets/ld36_slots_001.png');
     game.load.image('ld36_title_screen_001', 'assets/ld36_title_screen_001.png');
+	game.load.audio('ld36_audio_001','sound/ld36_audio_001.ogg');
   }
   function create() {
     game.stage.backgroundColor = GAME_BACKGROUND_COLOR;
@@ -51,7 +52,7 @@
       var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
       slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
       var texts = [
-        "My loyal servant,\n\n I want you to collect samples from the crafts of an old extinct species named 'humans'.\n\nYou will have to summon and use blocks of ancient materials to rebuild those samples. \n\n Do not disappoint me...\n\n(click to continue)"
+        "My loyal servant,\n\nI want you to collect samples from the crafts of an old extinct species named 'humans'.\n\nYou will have to summon and use blocks of ancient materials to rebuild those samples. \n\nDo not disappoint me...\n\n(click to continue)"
       ];
       chainedTextsWithFinalTrigger(0,0, texts, firstLevel);
     }
@@ -61,6 +62,8 @@
     template = new Template(game, 'Pyramid', 'ld36_blueprint_001', 'Level 1 \nPyramid');
     grid.setTemplate(template, PYRAMIDE_GRID);
     grid.spawnsComponents();
+	var music = game.add.audio('ld36_audio_001');
+	music.play();
   }
   function chainedTextsWithFinalTrigger(x, y, texts, triggerMethod) {
     var current = 0;
