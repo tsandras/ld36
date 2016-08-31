@@ -19,8 +19,10 @@
   <div id="ld36">
   </div>
   <p>
-    A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>
-    <br> Music by <a href="http://david.fonteix.free.fr/">David Fonteix</a>
+    A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>. 
+  <p>
+  </p>
+	Music by <a href="http://david.fonteix.free.fr/">David Fonteix</a>
   </p>
   <p>
     See on <a href="https://github.com/tsandras/ld36">Git Hub</a>
@@ -48,6 +50,8 @@
     var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
     titleScreen.inputEnabled = true;
     titleScreen.events.onInputDown.addOnce(playGame, this);
+    var music = game.add.audio('ld36_audio_001');
+	music.play();
     function playGame() {
       game.add.image(0, 0, 'ld36_bg_001');
       var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
@@ -63,8 +67,6 @@
     template = new Template(game, 'Pyramid', 'ld36_blueprint_001', 'Level 1 \nPyramid');
     grid.setTemplate(template, PYRAMIDE_GRID);
     grid.spawnsComponents();
-	var music = game.add.audio('ld36_audio_001');
-	music.play();
   }
   function chainedTextsWithFinalTrigger(x, y, texts, triggerMethod) {
     var current = 0;
