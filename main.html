@@ -19,7 +19,10 @@
   <div id="ld36">
   </div>
   <p>
-    A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>
+    A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>. 
+  <p>
+  </p>
+	Music by <a href="http://david.fonteix.free.fr/">David Fonteix</a>
   </p>
   <p>
     See on <a href="https://github.com/tsandras/ld36">Git Hub</a>
@@ -39,6 +42,7 @@
     game.load.image('ld36_win_001', 'assets/ld36_win_001.png');
     game.load.image('ld36_slots_001', 'assets/ld36_slots_001.png');
     game.load.image('ld36_title_screen_001', 'assets/ld36_title_screen_001.png');
+    game.load.audio('ld36_audio_001','sound/ld36_audio_001.ogg');
     game.load.json('levels', 'data/levels.json');
     game.load.text('test', 'data/test.txt');
   }
@@ -49,12 +53,14 @@
     var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
     titleScreen.inputEnabled = true;
     titleScreen.events.onInputDown.addOnce(playGame, this);
+    var music = game.add.audio('ld36_audio_001');
+    music.play();
     function playGame() {
       game.add.image(0, 0, 'ld36_bg_001');
       var slotsImg = game.add.image(580, 175, 'ld36_slots_001');
       slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
       var texts = [
-        "My loyal servant,\n\n I want you to collect samples from the crafts of an old extinct species named 'humans'.\n\nYou will have to summon and use blocks of ancient materials to rebuild those samples. \n\n Do not disappoint me...\n\n(click to continue)"
+        "My loyal servant,\n\nI want you to collect samples from the crafts of an old extinct species named 'humans'.\n\nYou will have to summon and use blocks of ancient materials to rebuild those samples. \n\nDo not disappoint me...\n\n(click to continue)"
       ];
       chainedTextsWithFinalTrigger(0,0, texts, firstLevel);
     }
