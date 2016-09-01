@@ -1,80 +1,51 @@
-# Ludum dare 36 :-)
+# Cursed bricks ot he Ancient
+## Ludum dare 36 :-)
 
-[Our Ludum Dare submission](http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=26047)! \o/
+[Our Ludum Dare submission](http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=26047)! \o/  
+[Link to old README (TODO)](https://github.com/tsandras/ld36/blob/master/TODO.md)
 
-## TODO
-
-### Proto test [DONE]
-
-* ~~Display image~~
-* ~~Move image~~
-* ~~Slots~~
-* ~~Grid based design~~
-  * ~~Visual feedback~~
-  * ~~Drag&Drop~~
-
-### Basic rules
-
-* ~~Spawns~~
-  * ~~Display~~
-  * ~~Random generation~~
-* ~~Template loading~~
-* ~~Win conditions~~
-* Lose conditions
-
-### Advanced rules
-
-* Resources specifics
-  * Types
-    * ~~Raw~~
-    * ~~Mechanics~~
-    * Energy?
-  * Shapes
-    * Square
-    * Round
-* Balancing
-  * Spawn conditions
-
-### Assets
-
-* ~~Bg~~
-* ~~Title Screen~~
-* ~~Favicon~~
-* ~~Pointers~~
-  * ~~Default~~
-  * ~~Drag&Drop~~
-* Templates
-  * Pyramid
-    * ~~Blueprint~~
-    * ~~Win~~
-    * Fail
-  * Clepsydra
-    * Blueprint
-    * Win
-    * Fail
-  * High wheeler
-    * Blueprint
-    * Win
-    * Fail
-* Resources
-  * ~~Square+Raw~~
-    * ~~1x1~~
-    * ~~1x2~~
-    * ~~2x1~~
-    * ~~2x2~~
-  * Round+Raw
-    * 1x1
-    * 1x2
-    * 2x1
-    * 2x2
-
-### Polish & corrections
-
-#### Bugs
-
-* the snail function is drunk
-
-#### Design
-
-* ~~too much 2*2 bricks~~
-* ~~change highlight to another color when over a wrong grid slot~~
+## Create levels
+Example of first level :
+```json
+[
+  {
+    "levelName":"Pyramid",
+    "id": 0,
+    "levelText":"Level 1 \nPyramid",
+    "blueprintImage":"ld36_blueprint_001",
+    "winImage":"ld36_win_001",
+    "components": [
+      {"name": "square+raw_1x2", "width": 1, "height": 2, "type": "Raw", "cardinality": 2},
+      {"name": "square+raw_2x1", "width": 2, "height": 1, "type": "Raw", "cardinality": 2},
+      {"name": "square+raw_1x1", "width": 1, "height": 1, "type": "Raw", "cardinality": 2},
+      {"name": "square+raw_2x2", "width": 2, "height": 2, "type": "Raw", "cardinality": 1}
+    ],
+    "grid": [
+      [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
+      [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
+      [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
+      [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
+      [[], [], [], [], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], [], [], [], []],
+      [[], [], [], [], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], [], [], [], []],
+      [[], [], [], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], [], [], []],
+      [[], [], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], [], []],
+      [[], [], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], [], []],
+      [[], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], []],
+      [[], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], [], []],
+      [["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], []]
+    ],
+    "textsBefore": [
+      "My loyal servant,\n\nI want you to collect samples from the crafts of an old extinct species named 'humans'.\n\nYou will have to summon and use blocks of ancient materials to rebuild those samples. \n\nDo not disappoint me...\n\n(click to continue)"
+    ],
+    "textsAfterWin": [
+      "Impressive... Most impressive. \n\n(click to next level)"
+    ],
+    "textsAfterLose": [
+      "It was very easy... but you're just a human... \n\n(click to restart)"
+    ],
+    "textDuring": "Test",
+    "loseByShape": 0.1
+  }
+]
+```
+If you want to add level, you need to edit this json : [levels.json](https://github.com/tsandras/ld36/blob/master/data/levels.json)
