@@ -39,9 +39,12 @@
     game.load.image('ld36_win_001', 'assets/ld36_win_001.png');
     game.load.image('ld36_slots_001', 'assets/ld36_slots_001.png');
     game.load.image('ld36_title_screen_001', 'assets/ld36_title_screen_001.png');
+    game.load.json('levels', 'data/levels.json');
+    game.load.text('test', 'data/test.txt');
   }
   function create() {
     game.stage.backgroundColor = GAME_BACKGROUND_COLOR;
+    Levels.generateAll(game);
     // mon code tout sale
     var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
     titleScreen.inputEnabled = true;
