@@ -7,25 +7,39 @@ function Level(game) {
 
   self.start = function() {
     self.data = LEVELS.findById(id);
-    if (self.grid) {
+    if (self.grid && self.grid.sprite) {
       self.grid.sprite.destroy();
     }
     chainedTextsWithFinalTrigger(0,0, self.data.textsBefore, self.startLevel);
   }
+
   self.startLevel = function() {
-    var template = new Template(game, self.data.levelName, self.data.blueprintImage, self.data.levelText, self.data.components);
+    var template = new Template(
+      game,
+      self.data.levelName,
+      self.data.blueprintImage,
+      self.data.levelText,
+      self.data.components,
+      self.data.loseByShape
+    );
     self.grid = new Grid(game);
     self.grid.setTemplate(template, LEVELS.generateGridLevelById(id));
     self.grid.spawnsComponents();
   }
-  self.endLevel = function() {
-    if (id + 1 < LEVELS.levels.length) {
+
+  self.endLevel = function(isWin) {
+    if (id + 1 < LEVELS.data.length && isWin) {
       id = id + 1;
-    } else {
+    } else if (isWin) {
       id = 0;
     }
-    chainedTextsWithFinalTrigger(0, -150, self.data.textsAfter, self.start);
+    if (isWin) {
+      chainedTextsWithFinalTrigger(0, -150, self.data.textsAfterWin, self.start);
+    } else {
+      chainedTextsWithFinalTrigger(0, -150, self.data.textsAfterLose, self.start);
+    }
   }
+
   var chainedTextsWithFinalTrigger = function(x, y, texts, triggerMethod) {
     var current = 0;
     lastText = game.add.text(x, y, texts[current], { font: "24px Georgia", fill: TEXT_COLOR, align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 460});
@@ -34,6 +48,7 @@ function Level(game) {
     current = current + 1;
     game.input.onDown.addOnce(showNext, {x: x, y: y, lastText: lastText, texts: texts, current: current, method: triggerMethod}, this);
   }
+
   var showNext = function() {
     this.lastText.destroy()
     this.lastText = game.add.text(this.x, this.y, this.texts[this.current], { font: "30px Georgia", fill: TEXT_COLOR, align: "center", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 200});

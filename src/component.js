@@ -29,8 +29,12 @@ Component = function(game, id, name, x, y, w, h, kind) {
       }
       if (this.grid.isBasicWin()) {
         this.grid.cleanUp();
-        this.grid.sprite = game.add.image(GRID_X, GRID_Y, 'ld36_win_001');
-        level.endLevel();
+        this.grid.sprite = game.add.image(GRID_X, GRID_Y, level.winImage);
+        level.endLevel(true);
+      }
+      if (this.grid.isLosedByShape()) {
+        this.grid.cleanUp();
+        level.endLevel(false);
       }
     } else {
       self.sprite.position.x = self.xOld;

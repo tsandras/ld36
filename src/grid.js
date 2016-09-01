@@ -4,6 +4,7 @@ function Grid(game) {
   self.game = game;
   self.template = null;
   self.squares = null;
+  self.nbsFilled = 0;
 
   self.createGraphicGrid = function () {
     graphics = self.game.add.graphics(GRID_X, GRID_Y);
@@ -24,11 +25,15 @@ function Grid(game) {
   }
 
   self.setTemplate = function(template, squares) {
+    self.nbsFilled = 0;
     self.template = template;
     self.squares = squares;
     for (i = 0; i < GRID_SQUARES_Y; i ++) {
       for (j = 0; j < GRID_SQUARES_X; j ++) {
         self.squares[i][j].setInfo(self.game);
+        if (self.squares[i][j].filled) {
+          self.nbsFilled = self.nbsFilled + 1;
+        }
       }
     }
   }
@@ -176,5 +181,9 @@ function Grid(game) {
 
   self.isBasicWin = function() {
     return self.template.isBasicWin(self);
+  }
+
+  self.isLosedByShape = function() {
+    return self.template.isLosedByShape(self);
   }
 }

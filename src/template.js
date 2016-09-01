@@ -1,4 +1,4 @@
-Template = function(game, name, spriteName, text, components) {
+Template = function(game, name, spriteName, text, components, loseByshape) {
   var self = this;
   self.id = 1;
   self.game = game;
@@ -9,6 +9,7 @@ Template = function(game, name, spriteName, text, components) {
   self.text.setTextBounds(590, 20, 200, 115);
   self.text.blendMode = PIXI.blendModes.COLOR_BURN;
   self.components = [];
+  self.loseByshape = loseByshape;
   for (i = 0; i < components.length; i++) {
     for (j = 0; j < components[i].cardinality; j++) {
       self.components.push(components[i]);
@@ -68,6 +69,24 @@ Template = function(game, name, spriteName, text, components) {
       }
     }
     return win;
+  }
+
+  self.isLosedByShape = function(grid) {
+    var outsideShape = 0;
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
+      for (j = 0; j < GRID_SQUARES_Y; j++) {
+        tmpSquare = grid.squares[i][j];
+        if (!tmpSquare.filled && tmpSquare.component) {
+          outsideShape = outsideShape + 1;
+          console.log(outsideShape/grid.nbsFilled);
+          if (outsideShape/grid.nbsFilled > self.loseByshape) {
+            console.log('Is losed');
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
   // // non used method, but maybe soon..

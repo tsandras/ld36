@@ -1,7 +1,7 @@
 function Levels(levels) {
   var self = this;
 
-  self.levels = game.cache.getJSON('levels');
+  self.data = game.cache.getJSON('levels');
 
   var emptySquare = function(x, y) {
     return new Square(null, false, [], null, x, y);
@@ -16,11 +16,11 @@ function Levels(levels) {
   }
 
   self.findById = function(id) {
-    return self.levels[id];
+    return self.data[id];
   }
 
   self.generateGridLevelById = function(id) {
-    var level = self.levels[id];
+    var level = self.data[id];
     var out = [];
     for (i = 0; i < GRID_SQUARES_Y; i++) {
       out[i] = [];
