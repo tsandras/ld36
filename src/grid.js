@@ -1,19 +1,9 @@
-function Grid(game, squares) {
+function Grid(game) {
   var self = this;
 
   self.game = game;
   self.template = null;
-
-  var createDefaultGrid = function () {
-    out = []
-    for (i = 0; i < 12; i++) {
-      out[i] = []
-      for (j = 0; j < 18; j++) {
-        out[i][j] = new Square(game, false, ['default'], null, 40 * i, j * 40);
-      }
-    }
-    return out;
-  }
+  self.squares = null;
 
   self.createGraphicGrid = function () {
     graphics = self.game.add.graphics(GRID_X, GRID_Y);
@@ -31,21 +21,6 @@ function Grid(game, squares) {
     graphics.moveTo(0, 480);
     graphics.lineTo(480, 480);
     return graphics;
-  }
-
-  if (squares) {
-    self.squares = squares;
-  } else {
-    self.squares = createDefaultGrid();
-  }
-
-  self.graphicSquares = self.createGraphicGrid();
-  self.graphicSquares.visible = false;
-
-  for (i = 0; i < GRID_SQUARES_Y; i ++) {
-    for (j = 0; j < GRID_SQUARES_X; j ++) {
-      self.squares[i][j].setInfo(self.game);
-    }
   }
 
   self.setTemplate = function(template, squares) {

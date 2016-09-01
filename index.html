@@ -1,0 +1,49 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" />
+  <title>Cursed bricks of the Ancient</title>
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style/style.css" type="text/css">
+  <script type="text/javascript" src="vendor/phaser.min.js"></script>
+  <script type="text/javascript" src="data/parameters.js"></script>
+  <script type="text/javascript" src="src/helper.js"></script>
+  <script type="text/javascript" src="src/component.js"></script>
+  <script type="text/javascript" src="src/square.js"></script>
+  <script type="text/javascript" src="src/template.js"></script>
+  <script type="text/javascript" src="src/grid.js"></script>
+  <script type="text/javascript" src="src/levels.js"></script>
+  <script type="text/javascript" src="src/level.js"></script>
+</head>
+<body>
+  <div id="ld36"></div>
+  <p>
+    A <s>game</s> toy made in less than 48h for the <a href="http://ludumdare.com/compo/">Ludum Dare 36</a> by <a href="https://github.com/tsandras">Tristan Sandras</a> & <a href="http://www.miryamhouali.com">Miryam Houali</a>. 
+  <p>
+  <p>Music by <a href="http://david.fonteix.free.fr/">David Fonteix</a></p>
+  <p>See on <a href="https://github.com/tsandras/ld36">Github</a></p>
+</body>
+
+<script type="text/javascript">
+  var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.CANVAS, 'ld36', { preload: preload, create: create });
+  var id = 0;
+  function preload() {
+    for (i in ASSETS) { game.load[ASSETS[i].type](ASSETS[i].name, ASSETS[i].src); };
+  }
+  function create() {
+    game.stage.backgroundColor = GAME_BACKGROUND_COLOR;
+    LEVELS = new Levels();
+    var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
+    var music = game.add.audio('ld36_audio_001');
+    music.play();
+    titleScreen.inputEnabled = true;
+    titleScreen.events.onInputDown.addOnce(initGame, this);
+  }
+  function initGame() {
+    self.game.add.image(0, 0, 'ld36_bg_001');
+    var slotsImg = self.game.add.image(580, 175, 'ld36_slots_001');
+    slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
+    Level.run();
+  }
+</script>

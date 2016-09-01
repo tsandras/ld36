@@ -15,28 +15,28 @@ Component = function(game, id, name, x, y, w, h, kind) {
   self.kind = kind;
 
   var dragUpdate = function(sprite, pointer, dragX, dragY, snapPoint) {
-    grid.hideAllInfos();
-    grid.showSlots(self);
+    this.grid.hideAllInfos();
+    this.grid.showSlots(self);
   }
 
   var onDragStop = function(sprite, pointeur) {
-    if (grid.isInGrid(self)) {
-      var changed = grid.putOnSlots(self);
+    if (this.grid.isInGrid(self)) {
+      var changed = this.grid.putOnSlots(self);
       if (changed) {
-        grid.setComponent(self, self.xGrid, self.yGrid);
-        grid.nonUsedComponents(self);
-        grid.spawnsComponents();
+        this.grid.setComponent(self, self.xGrid, self.yGrid);
+        this.grid.nonUsedComponents(self);
+        this.grid.spawnsComponents();
       }
-      if (grid.isBasicWin()) {
-        grid.cleanUp();
-        grid.sprite = game.add.image(GRID_X, GRID_Y, 'ld36_win_001');
-        chainedTextsWithFinalTrigger(0, -150, ["Impressive... Most impressive. \n\n(click to restart)"], firstLevel);
+      if (this.grid.isBasicWin()) {
+        this.grid.cleanUp();
+        this.grid.sprite = game.add.image(GRID_X, GRID_Y, 'ld36_win_001');
+        level.endLevel();
       }
     } else {
       self.sprite.position.x = self.xOld;
       self.sprite.position.y = self.yOld;
     }
-    grid.hideAllInfos();
+    this.grid.hideAllInfos();
   }
 
   var onDragStart = function(sprite, pointeur) {
