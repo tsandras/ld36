@@ -1,4 +1,4 @@
-# Cursed bricks ot he Ancient
+# Cursed bricks of the Ancient
 ## Ludum dare 36 :-)
 
 [Our Ludum Dare submission](http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=26047)! \o/  
