@@ -1,4 +1,4 @@
-Template = function(game, name, spriteName, text, components, loseByshape) {
+Template = function(game, name, spriteName, text, components, loseByShape, loseByKind) {
   var self = this;
   self.id = 1;
   self.game = game;
@@ -9,7 +9,8 @@ Template = function(game, name, spriteName, text, components, loseByshape) {
   self.text.setTextBounds(590, 20, 200, 115);
   self.text.blendMode = PIXI.blendModes.COLOR_BURN;
   self.components = [];
-  self.loseByshape = loseByshape;
+  self.loseByShape = loseByShape;
+  self.loseByKind = loseByKind;
   for (i = 0; i < components.length; i++) {
     for (j = 0; j < components[i].cardinality; j++) {
       self.components.push(components[i]);
@@ -78,9 +79,23 @@ Template = function(game, name, spriteName, text, components, loseByshape) {
         tmpSquare = grid.squares[i][j];
         if (!tmpSquare.filled && tmpSquare.component) {
           outsideShape = outsideShape + 1;
-          console.log(outsideShape/grid.nbsFilled);
-          if (outsideShape/grid.nbsFilled > self.loseByshape) {
-            console.log('Is losed');
+          if (outsideShape/grid.nbsFilled > self.loseByShape) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  self.isLosedByKind = function(grid) {
+    var badKinds = 0;
+    for (i = 0; i < GRID_SQUARES_Y; i++) {
+      for (j = 0; j < GRID_SQUARES_Y; j++) {
+        tmpSquare = grid.squares[i][j];
+        if (tmpSquare.filled && tmpSquare.component && !tmpSquare.kinds.includes(tmpSquare.component.kind)) {
+          badKinds = badKinds + 1;
+          if (badKinds/grid.nbsFilled > self.loseByKind) {
             return true;
           }
         }

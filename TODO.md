@@ -20,7 +20,7 @@
   * ~~Random generation~~
 * ~~Template loading~~
 * ~~Win conditions~~
-* Lose conditions
+* ~~Lose conditions~~
 
 ### Advanced rules
 
@@ -73,6 +73,7 @@
 #### Bugs
 
 * the snail function is drunk
+* optimization of win and lose conditions !
 
 #### Design
 

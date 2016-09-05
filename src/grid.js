@@ -186,4 +186,8 @@ function Grid(game) {
   self.isLosedByShape = function() {
     return self.template.isLosedByShape(self);
   }
+
+  self.isLosedByKind = function() {
+    return self.template.isLosedByKind(self);
+  }
 }

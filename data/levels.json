@@ -35,7 +35,8 @@
       "It was supposed to be an easy task... \n\n(click to restart)"
     ],
     "textDuring": "Test",
-    "loseByShape": 0.1
+    "loseByShape": 0.1,
+    "loseByKind": 1
   },
   {
     "levelName":"Twisted Pyramid",
@@ -73,6 +74,7 @@
       "You are a disgrace... \n\n(click to restart)"
     ],
     "textDuring": "Test",
-    "loseByShape": 0.05
+    "loseByShape": 0.05,
+    "loseByKind": 0.05
   }
 ]

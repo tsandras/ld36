@@ -20,7 +20,8 @@ function Level(game) {
       self.data.blueprintImage,
       self.data.levelText,
       self.data.components,
-      self.data.loseByShape
+      self.data.loseByShape,
+      self.data.loseByKind
     );
     self.grid = new Grid(game);
     self.grid.setTemplate(template, LEVELS.generateGridLevelById(id));

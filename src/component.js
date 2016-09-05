@@ -32,7 +32,7 @@ Component = function(game, id, name, x, y, w, h, kind) {
         this.grid.sprite = game.add.image(GRID_X, GRID_Y, level.winImage);
         level.endLevel(true);
       }
-      if (this.grid.isLosedByShape()) {
+      if (this.grid.isLosedByShape() || this.grid.isLosedByKind()) {
         this.grid.cleanUp();
         level.endLevel(false);
       }
