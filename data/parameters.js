@@ -22,6 +22,8 @@ const ASSETS = [
   {"name":"ld36_win_001", "src":"assets/ld36_win_001.png", "type":"image"},
   {"name":"ld36_slots_001", "src":"assets/ld36_slots_001.png", "type":"image"},
   {"name":"ld36_title_screen_001", "src":"assets/ld36_title_screen_001.png", "type":"image"},
+  {"name":"ld36_audio_on_001", "src":"assets/ld36_audio_on_001.png", "type":"image"},
+  {"name":"ld36_audio_off_001", "src":"assets/ld36_audio_off_001.png", "type":"image"},
   {"name":"ld36_audio_001", "src":"sound/ld36_audio_001.ogg", "type":"audio"},
   {"name":"levels", "src":"data/levels.json", "type":"json"}
 ];

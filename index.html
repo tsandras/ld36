@@ -35,10 +35,9 @@
     game.stage.backgroundColor = GAME_BACKGROUND_COLOR;
     LEVELS = new Levels();
     var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
-    var music = game.add.audio('ld36_audio_001');
-    music.play();
     titleScreen.inputEnabled = true;
     titleScreen.events.onInputDown.addOnce(initGame, this);
+	titleScreen.events.onInputDown.addOnce(playMusic, this);
   }
   function initGame() {
     self.game.add.image(0, 0, 'ld36_bg_001');
@@ -46,4 +45,40 @@
     slotsImg.blendMode = PIXI.blendModes.COLOR_BURN;
     Level.run();
   }
+  //y a surement moyen de factoriser ca de ouf mais euh il est 4h et je vais dodo (et en vrai jsais pas comment faire)
+  function playMusic() {
+    var music = game.add.audio('ld36_audio_001');
+	var s = 0;
+	music.play();
+	musicOnImg = game.add.sprite(50, 10, 'ld36_audio_on_001');
+    musicOnImg.blendMode = PIXI.blendModes.COLOR_BURN;
+    musicOnImg.inputEnabled = true;
+	musicOnImg.events.onInputDown.addOnce(
+	  function switchMusic(){
+	  console.log("Ici");
+        if (s == 0)
+        {
+		console.log("Là");
+		  s++;
+          music.pause();
+          musicOnImg.kill();
+          musicOffImg = game.add.sprite(50, 11, 'ld36_audio_off_001');
+          musicOffImg.blendMode = PIXI.blendModes.COLOR_BURN;
+          musicOffImg.inputEnabled = true;
+          musicOffImg.events.onInputDown.addOnce(switchMusic);
+        }
+		else
+        {
+		console.log("toto");
+		  s--;
+          music.resume();
+          musicOffImg.kill();
+          musicOnImg = game.add.sprite(50, 10, 'ld36_audio_on_001');
+          musicOnImg.blendMode = PIXI.blendModes.COLOR_BURN;
+          musicOnImg.inputEnabled = true;
+          musicOnImg.events.onInputDown.addOnce(switchMusic);
+        }
+	  }
+	);
+}
 </script>
