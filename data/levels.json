@@ -32,15 +32,15 @@
       "Impressive... Most impressive. \n\n(click to next level)"
     ],
     "textsAfterLose": [
-      "It was supposed to be easy... \n\nUgh, humans are so limited. \n\n(click to restart)"
+      "It was supposed to be an easy task... \n\n(click to restart)"
     ],
     "textDuring": "Test",
     "loseByShape": 0.1
   },
   {
-    "levelName":"Stwisted Pyramid",
+    "levelName":"Twisted Pyramid",
     "id": 1,
-    "levelText":"Level 2 \nStwisted Pyramid",
+    "levelText":"Level 2 \nTwisted Pyramid",
     "blueprintImage":"ld36_blueprint_001",
     "winImage":"ld36_win_001",
     "components": [
@@ -67,10 +67,10 @@
       "(This is a new level)"
     ],
     "textsAfterWin": [
-      "Good, goood... \n\n(click to restart)"
+      "Good, goood! \n\n(click to restart)"
     ],
     "textsAfterLose": [
-      "It was supposed to be easy... \n\nUgh, humans are so limited. \n\n(click to restart)"
+      "You are a disgrace... \n\n(click to restart)"
     ],
     "textDuring": "Test",
     "loseByShape": 0.05
