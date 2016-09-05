@@ -35,7 +35,7 @@ function Levels(levels) {
     return out;
   }
 
-  // Why dosn't work ?
+  // Why doesn't it work?
   // self.count = function() {
   //   return self.levels.length;
   // }

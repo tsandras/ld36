@@ -32,7 +32,7 @@
       "Impressive... Most impressive. \n\n(click to next level)"
     ],
     "textsAfterLose": [
-      "It was very easy... but you're just a human... \n\n(click to restart)"
+      "It was supposed to be easy... \n\nUgh, humans are so limited. \n\n(click to restart)"
     ],
     "textDuring": "Test",
     "loseByShape": 0.1
@@ -64,13 +64,13 @@
       [["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], ["Raw", "Mechanics"], [], [], [], [], [], []]
     ],
     "textsBefore": [
-      "This is a new level"
+      "(This is a new level)"
     ],
     "textsAfterWin": [
-      "Other reference. \n\n(click to restart)"
+      "Good, goood... \n\n(click to restart)"
     ],
     "textsAfterLose": [
-      "It was very easy... but you're just a human... \n\n(click to restart)"
+      "It was supposed to be easy... \n\nUgh, humans are so limited. \n\n(click to restart)"
     ],
     "textDuring": "Test",
     "loseByShape": 0.05
