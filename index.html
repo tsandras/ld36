@@ -33,11 +33,29 @@
   }
   function create() {
     game.stage.backgroundColor = GAME_BACKGROUND_COLOR;
+    level = null;
     LEVELS = new Levels();
-    var titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
+    showTitleScreen();
+    var space_key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    space_key.onDown.add(showLevelsMenu, this);
+  }
+  function showTitleScreen() {
+    titleScreen = game.add.image(0, 0, 'ld36_title_screen_001');
     titleScreen.inputEnabled = true;
     titleScreen.events.onInputDown.addOnce(initGame, this);
-	titleScreen.events.onInputDown.addOnce(playMusic, this);
+    titleScreen.events.onInputDown.addOnce(playMusic, this);
+  }
+  function showLevelsMenu() {
+    LEVELS.manageLevelsMenu();
+    if (LEVELS.hidden) {
+      initGame();
+    } else {
+      game.input.onDown.removeAll();
+      titleScreen.destroy();
+      if (level && level.grid) {
+        level.grid.cleanUp();
+      }
+    }
   }
   function initGame() {
     self.game.add.image(0, 0, 'ld36_bg_001');
@@ -48,29 +66,23 @@
   //y a surement moyen de factoriser ca de ouf mais euh il est 4h et je vais dodo (et en vrai jsais pas comment faire)
   function playMusic() {
     var music = game.add.audio('ld36_audio_001');
-	var s = 0;
-	music.play();
-	musicOnImg = game.add.sprite(50, 10, 'ld36_audio_on_001');
+    var s = 0;
+    music.play();
+    musicOnImg = game.add.sprite(50, 10, 'ld36_audio_on_001');
     musicOnImg.blendMode = PIXI.blendModes.COLOR_BURN;
     musicOnImg.inputEnabled = true;
-	musicOnImg.events.onInputDown.addOnce(
-	  function switchMusic(){
-	  console.log("Ici");
-        if (s == 0)
-        {
-		console.log("Là");
-		  s++;
+    musicOnImg.events.onInputDown.addOnce(
+      function switchMusic() {
+        if (s == 0) {
+          s++;
           music.pause();
           musicOnImg.kill();
           musicOffImg = game.add.sprite(50, 11, 'ld36_audio_off_001');
           musicOffImg.blendMode = PIXI.blendModes.COLOR_BURN;
           musicOffImg.inputEnabled = true;
           musicOffImg.events.onInputDown.addOnce(switchMusic);
-        }
-		else
-        {
-		console.log("toto");
-		  s--;
+        } else {
+          s--;
           music.resume();
           musicOffImg.kill();
           musicOnImg = game.add.sprite(50, 10, 'ld36_audio_on_001');
@@ -78,7 +90,7 @@
           musicOnImg.inputEnabled = true;
           musicOnImg.events.onInputDown.addOnce(switchMusic);
         }
-	  }
-	);
-}
+      }
+    );
+  }
 </script>
