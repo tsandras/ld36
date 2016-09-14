@@ -50,5 +50,5 @@ Example of first level :
 ]
 ```
 `loseByShape` and `loseByKind` need to have value between 0 and 1. This is the tolerance for bad shape or bad kind (of component). Put 1 if you want to release this parameter.  
-Example : If you have a template of 10 squares and you have `loseByShape` to 0.1 if you have more than one square with component outside the template, you lose the game.
+Example : If you have a template of 10 squares and you have `loseByShape` to 0.1 if you have more than one square with component outside the template, you lose the game.  
 If you want to add level, you need to edit this json : [levels.json](https://github.com/tsandras/ld36/blob/master/data/levels.json)
