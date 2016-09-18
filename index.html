@@ -65,7 +65,7 @@
   }
   //y a surement moyen de factoriser ca de ouf mais euh il est 4h et je vais dodo (et en vrai jsais pas comment faire)
   function playMusic() {
-    var music = game.add.audio('ld36_audio_001');
+    var music = game.add.audio('ld36_audio_001', 1, true);
     var s = 0;
     music.play();
     musicOnImg = game.add.sprite(50, 10, 'ld36_audio_on_001');
