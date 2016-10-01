@@ -72,7 +72,7 @@ Template = function(game, name, spriteName, text, components, loseByShape, loseB
     return win;
   }
 
-  self.isLosedByShape = function(grid) {
+  self.isLostByShape = function(grid) {
     var outsideShape = 0;
     for (i = 0; i < GRID_SQUARES_Y; i++) {
       for (j = 0; j < GRID_SQUARES_Y; j++) {
@@ -88,7 +88,7 @@ Template = function(game, name, spriteName, text, components, loseByShape, loseB
     return false;
   }
 
-  self.isLosedByKind = function(grid) {
+  self.isLostByKind = function(grid) {
     var badKinds = 0;
     for (i = 0; i < GRID_SQUARES_Y; i++) {
       for (j = 0; j < GRID_SQUARES_Y; j++) {

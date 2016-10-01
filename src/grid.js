@@ -183,11 +183,11 @@ function Grid(game) {
     return self.template.isBasicWin(self);
   }
 
-  self.isLosedByShape = function() {
-    return self.template.isLosedByShape(self);
+  self.isLostByShape = function() {
+    return self.template.isLostByShape(self);
   }
 
-  self.isLosedByKind = function() {
-    return self.template.isLosedByKind(self);
+  self.isLostByKind = function() {
+    return self.template.isLostByKind(self);
   }
 }
