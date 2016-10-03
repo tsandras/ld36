@@ -76,8 +76,8 @@
 #### Bugs
 
 * the snail function is drunk
-* optimization of win and lose conditions !
-* on/off button is hid when you changing level !
+* optimization of win and lose conditions!
+* on/off button is hidden when you're changing level!
 
 #### Design
 
