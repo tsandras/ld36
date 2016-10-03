@@ -67,6 +67,9 @@
     * 1x2
     * 2x1
     * 2x2
+    
+### New actions
+* Add trigger to resume game.
 
 ### Polish & corrections
 
