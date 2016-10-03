@@ -69,7 +69,7 @@
     * 2x2
     
 ### New actions
-* Add trigger to resume game.
+* Add trigger to reset game.
 
 ### Polish & corrections
 
