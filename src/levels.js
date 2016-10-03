@@ -72,7 +72,7 @@ function Levels(levels) {
     self.levelsText = [];
   }
 
-  self.manageLevelsMenu = function() {
+  self.levelsManager = function() {
     if (self.hidden) {
       self.displayLevelsMenu();
     } else {

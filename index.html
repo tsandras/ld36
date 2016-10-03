@@ -49,15 +49,13 @@
     }, this);
   }
   function showLevelsMenu() {
-    LEVELS.manageLevelsMenu();
+    LEVELS.levelsManager();
+    game.input.onDown.removeAll();
     if (LEVELS.hidden) {
-      initGame();
-    } else {
-      game.input.onDown.removeAll();
-      titleScreen.destroy();
-      if (level && level.grid) {
-        level.grid.cleanUp();
+      if (level) {
+        level.cleanUp();
       }
+      initGame();
     }
   }
   function initGame() {
