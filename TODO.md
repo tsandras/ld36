@@ -69,7 +69,7 @@
     * 2x2
     
 ### New actions
-* Add trigger to reset game.
+* ~~Add trigger to reset game.~~
 
 ### Polish & corrections
 
